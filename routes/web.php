@@ -13,7 +13,9 @@ Route::get('/forgetPassword', [App\Http\Controllers\report\Dashboard3Controller:
 
 Route::get('/register', [App\Http\Controllers\report\Dashboard3Controller::class, 'register'])->name('register');
 Route::get('/register/{formName}', [App\Http\Controllers\report\Dashboard3Controller::class, 'register'])->name('register_byname');
+
 Route::get('/clean_me', [App\Http\Controllers\report\Dashboard3Controller::class, 'clean_me'])->name('clean_me');
+Route::get('/test_mail', [App\Http\Controllers\MailController::class, 'basic_email'])->name('test_mail');
 
 
 

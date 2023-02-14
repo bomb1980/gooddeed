@@ -16,8 +16,8 @@ class Controller extends BaseController
 
     function __construct(Request  $request)
     {
-        if (!empty($request->route()->getName()))
-            $this->OoapMasSubmenu = OoapMasSubmenu::getData($request->route()->getName())->first();
+        // if (!empty($request->route()->getName()))
+        //     $this->OoapMasSubmenu = OoapMasSubmenu::getData($request->route()->getName())->first();
 
     }
 }
