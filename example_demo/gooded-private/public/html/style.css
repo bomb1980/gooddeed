@@ -1,0 +1,4673 @@
+/*-----------------------------------------------------------------------------------
+	Gooddeeds
+	About: A shiny new Blocs website.
+	Author: PADOL
+	Version: 1.0
+	Built with Blocs
+-----------------------------------------------------------------------------------*/
+body{
+	margin:0;
+	padding:0;
+    background:#FFFFFF;
+    overflow-x:hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.page-container{overflow: hidden;} /* Prevents unwanted scroll space when scroll FX used. */
+a,button{transition: background .3s ease-in-out;outline: none!important;} /* Prevent blue selection glow on Chrome and Safari */
+a:hover{text-decoration: none; cursor:pointer;}
+.scroll-fx-lock-init{position:fixed!important;top: 0;bottom: 0;left: :0;right: 0;z-index:99999;} /* ScrollFX Lock */
+.blocs-grid-container{display: grid!important;grid-template-columns: 1fr 1fr;grid-template-rows: auto auto;column-gap: 1.5rem;row-gap: 1.5rem;} /* CSS Grid */
+
+/* = Web Fonts
+-------------------------------------------------------------- */
+
+@font-face {
+	font-family:'DBHelvethaicaX-Reg';
+	src: url('./fonts/DBHelvethaicaX-Reg/DBHelvethaicaX-Reg.woff2');
+	src: url('./fonts/DBHelvethaicaX-Reg/DBHelvethaicaX-Reg.woff2') format('woff2'),
+	url('./fonts/DBHelvethaicaX-Reg/DBHelvethaicaX-Reg.woff') format('woff'),
+	url('./fonts/DBHelvethaicaX-Reg/DBHelvethaicaX-Reg.eot?#iefix') format('embedded-opentype'),
+	url('./fonts/DBHelvethaicaX-Reg/DBHelvethaicaX-Reg.svg#DBHelvethaicaX-Reg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display:swap;
+}
+
+@font-face {
+	font-family:'DBHelvethaicaX-Med';
+	src: url('./fonts/DBHelvethaicaX-Med/DBHelvethaicaX-Med.woff2');
+	src: url('./fonts/DBHelvethaicaX-Med/DBHelvethaicaX-Med.woff2') format('woff2'),
+	url('./fonts/DBHelvethaicaX-Med/DBHelvethaicaX-Med.woff') format('woff'),
+	url('./fonts/DBHelvethaicaX-Med/DBHelvethaicaX-Med.eot?#iefix') format('embedded-opentype'),
+	url('./fonts/DBHelvethaicaX-Med/DBHelvethaicaX-Med.svg#DBHelvethaicaX-Med') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display:swap;
+}
+
+@font-face {
+	font-family:'DBHelvethaicaX-Li';
+	src: url('./fonts/DBHelvethaicaX-Li/DBHelvethaicaX-Li.woff2');
+	src: url('./fonts/DBHelvethaicaX-Li/DBHelvethaicaX-Li.woff2') format('woff2'),
+	url('./fonts/DBHelvethaicaX-Li/DBHelvethaicaX-Li.woff') format('woff'),
+	url('./fonts/DBHelvethaicaX-Li/DBHelvethaicaX-Li.eot?#iefix') format('embedded-opentype'),
+	url('./fonts/DBHelvethaicaX-Li/DBHelvethaicaX-Li.ttf') format('truetype'),
+	url('./fonts/DBHelvethaicaX-Li/DBHelvethaicaX-Li.svg#DBHelvethaicaX-Li') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display:swap;
+}
+
+@font-face {
+	font-family:'DBRamintraX-Bold';
+	src: url('./fonts/DBRamintraX-Bold/DBRamintraX-Bold.woff2');
+	src: url('./fonts/DBRamintraX-Bold/DBRamintraX-Bold.woff2') format('woff2'),
+	url('./fonts/DBRamintraX-Bold/DBRamintraX-Bold.woff') format('woff'),
+	url('./fonts/DBRamintraX-Bold/DBRamintraX-Bold.eot?#iefix') format('embedded-opentype'),
+	url('./fonts/DBRamintraX-Bold/DBRamintraX-Bold.svg#DBRamintraX-Bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display:swap;
+}
+
+@font-face {
+	font-family:'SukhumvitSet-Text';
+	src: url('./fonts/SukhumvitSet-Text/SukhumvitSet-Text.woff2');
+	src: url('./fonts/SukhumvitSet-Text/SukhumvitSet-Text.woff2') format('woff2'),
+	url('./fonts/SukhumvitSet-Text/SukhumvitSet-Text.woff') format('woff'),
+	url('./fonts/SukhumvitSet-Text/SukhumvitSet-Text.eot?#iefix') format('embedded-opentype'),
+	url('./fonts/SukhumvitSet-Text/SukhumvitSet-Text.svg#SukhumvitSet-Text') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display:swap;
+}
+
+/* = Blocs
+-------------------------------------------------------------- */
+
+.bloc{
+	width:100%;
+	clear:both;
+	background: 50% 50% no-repeat;
+	padding:0 20px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position:relative;
+	display:flex;
+}
+.bloc .container{
+	padding-left:0;
+	padding-right:0;
+}
+
+
+/* Sizes */
+
+.bloc-lg{
+	padding:100px 20px;
+}
+.bloc-md{
+	padding:50px 20px;
+}
+.bloc-sm{
+	padding:20px;
+}
+
+/* = Full Screen Blocs 
+-------------------------------------------------------------- */
+
+.bloc-fill-screen{
+	min-height:100vh;
+	display: flex;
+	flex-direction: column;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.bloc-fill-screen > .container{
+	align-self: flex-middle;
+	flex-grow: 1;
+	display: flex;
+	flex-wrap: wrap;
+}
+.bloc-fill-screen > .container > .row{
+	flex-grow: 1;
+	align-self: center;
+	width:100%;
+}
+.bloc-fill-screen .fill-bloc-top-edge, .bloc-fill-screen .fill-bloc-bottom-edge{
+	flex-grow: 0;
+}
+.bloc-fill-screen .fill-bloc-top-edge{
+	align-self: flex-start;
+}
+.bloc-fill-screen .fill-bloc-bottom-edge{
+	align-self: flex-end;
+}
+
+/* = Full Width Blocs 
+-------------------------------------------------------------- */
+
+.full-width-bloc{
+	padding-left:0;
+	padding-right:0;
+}
+.full-width-bloc .row{
+	margin-left:0;
+	margin-right:0;
+}
+.full-width-bloc .container{
+	width:100%;
+	max-width:100%!important;
+}
+.full-width-bloc .carousel img{
+	width:100%;
+	height:auto;
+}
+
+
+/* Group Styles */
+
+.bloc-group{
+	display:flex;
+}
+.bloc-tile-2{
+	width:50%;
+}
+.bloc-tile-3{
+	width:33.33333333%;
+}
+.bloc-tile-4{
+	width:25%;
+}
+.bloc-tile-2 .container, .bloc-tile-3 .container, .bloc-tile-4 .container{
+	width:100%;
+}
+
+
+/* Background Styles */
+
+.bg-center,.bg-l-edge,.bg-r-edge,.bg-t-edge,.bg-b-edge,.bg-tl-edge,.bg-bl-edge,.bg-tr-edge,.bg-br-edge,.bg-repeat{
+	-webkit-background-size: auto!important;
+	-moz-background-size: auto!important;
+	-o-background-size: auto!important;
+	background-size: auto!important;
+}
+
+
+/* Video Background Styles */
+
+.video-bg-container, .bloc-video{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	right: -50%;
+	overflow: hidden;
+	transform: translateX(-50%);
+	-webkit-transform:translateX(-50%);
+}
+.bloc-video, .video-bg-container iframe{
+	width: auto;
+	height: auto;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: 0;
+}
+
+
+/* Background Textures */
+
+.bloc-bg-texture::before{
+	content:"";
+	background-size: 2px 2px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+}
+.texture-geometry-shapes::before{
+	background: url("img/texture-geometry-shapes.png");
+	background-size: 280px 280px;
+}
+.texture-geometry-shapes-2::before{
+	background: url("img/texture-geometry-shapes-2.png");
+	background-size: 200px 200px;
+}
+.texture-diagonal-lines::before{
+	background: url("img/texture-diag-lines.png");
+	background-size: 10px 10px;
+}
+.texture-vertical-lines::before{
+	background: url("img/texture-v-lines.png");
+	background-size: 4px 4px;
+}
+
+
+/* Background Effects */
+
+.parallax__container {
+	clip: rect(0, auto, auto, 0);
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index:-1;
+}
+.parallax {
+	position: fixed;
+	top: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+/* Dark theme */
+
+.d-bloc{
+	color:rgba(255,255,255,.7);
+}
+.d-bloc button:hover{
+	color:rgba(255,255,255,.9);
+}
+.d-bloc .icon-round,.d-bloc .icon-square,.d-bloc .icon-rounded,.d-bloc .icon-semi-rounded-a,.d-bloc .icon-semi-rounded-b{
+	border-color:rgba(255,255,255,.9);
+}
+.d-bloc .divider-h span{
+	border-color:rgba(255,255,255,.2);
+}
+.d-bloc .a-btn,.d-bloc .navbar a, .d-bloc a .icon-sm, .d-bloc a .icon-md, .d-bloc a .icon-lg, .d-bloc a .icon-xl, .d-bloc h1 a, .d-bloc h2 a, .d-bloc h3 a, .d-bloc h4 a, .d-bloc h5 a, .d-bloc h6 a, .d-bloc p a{
+	color:rgba(255,255,255,.6);
+}
+.d-bloc .a-btn:hover,.d-bloc .navbar a:hover,.d-bloc a:hover .icon-sm, .d-bloc a:hover .icon-md, .d-bloc a:hover .icon-lg, .d-bloc a:hover .icon-xl, .d-bloc h1 a:hover, .d-bloc h2 a:hover, .d-bloc h3 a:hover, .d-bloc h4 a:hover, .d-bloc h5 a:hover, .d-bloc h6 a:hover, .d-bloc p a:hover{
+	color:rgba(255,255,255,1);
+}
+.d-bloc .navbar-toggle .icon-bar{
+	background:rgba(255,255,255,1);
+}
+.d-bloc .btn-wire,.d-bloc .btn-wire:hover{
+	color:rgba(255,255,255,1);
+	border-color:rgba(255,255,255,1);
+}
+.d-bloc .card{
+	color:rgba(0,0,0,.5);
+}
+.d-bloc .card button:hover{
+	color:rgba(0,0,0,.7);
+}
+.d-bloc .card icon{
+	border-color:rgba(0,0,0,.7);
+}
+.d-bloc .card .divider-h span{
+	border-color:rgba(0,0,0,.1);
+}
+.d-bloc .card .a-btn{
+	color:rgba(0,0,0,.6);
+}
+.d-bloc .card .a-btn:hover{
+	color:rgba(0,0,0,1);
+}
+.d-bloc .card .btn-wire, .d-bloc .card .btn-wire:hover{
+	color:rgba(0,0,0,.7);
+	border-color:rgba(0,0,0,.3);
+}
+
+
+/* Light theme */
+
+.d-bloc .card,.l-bloc{
+	color:rgba(0,0,0,.5);
+}
+.d-bloc .card button:hover,.l-bloc button:hover{
+	color:rgba(0,0,0,.7);
+}
+.l-bloc .icon-round,.l-bloc .icon-square,.l-bloc .icon-rounded,.l-bloc .icon-semi-rounded-a,.l-bloc .icon-semi-rounded-b{
+	border-color:rgba(0,0,0,.7);
+}
+.d-bloc .card .divider-h span,.l-bloc .divider-h span{
+	border-color:rgba(0,0,0,.1);
+}
+.d-bloc .card .a-btn,.l-bloc .a-btn,.l-bloc .navbar a,.l-bloc a .icon-sm, .l-bloc a .icon-md, .l-bloc a .icon-lg, .l-bloc a .icon-xl, .l-bloc h1 a, .l-bloc h2 a, .l-bloc h3 a, .l-bloc h4 a, .l-bloc h5 a, .l-bloc h6 a, .l-bloc p a{
+	color:rgba(0,0,0,.6);
+}
+.d-bloc .card .a-btn:hover,.l-bloc .a-btn:hover,.l-bloc .navbar a:hover, .l-bloc a:hover .icon-sm, .l-bloc a:hover .icon-md, .l-bloc a:hover .icon-lg, .l-bloc a:hover .icon-xl, .l-bloc h1 a:hover, .l-bloc h2 a:hover, .l-bloc h3 a:hover, .l-bloc h4 a:hover, .l-bloc h5 a:hover, .l-bloc h6 a:hover, .l-bloc p a:hover{
+	color:rgba(0,0,0,1);
+}
+.l-bloc .navbar-toggle .icon-bar{
+	color:rgba(0,0,0,.6);
+}
+.d-bloc .card .btn-wire,.d-bloc .card .btn-wire:hover,.l-bloc .btn-wire,.l-bloc .btn-wire:hover{
+	color:rgba(0,0,0,.7);
+	border-color:rgba(0,0,0,.3);
+}
+
+/* Row Margin Offsets */
+
+.voffset{
+	margin-top:30px;
+}
+
+
+/* = NavBar
+-------------------------------------------------------------- */
+
+.navbar-dark .nav .dropdown-menu .nav-link{
+	color: rgb(64, 64, 64);
+}
+/* = Sticky Nav
+-------------------------------------------------------------- */
+
+.sticky-nav.sticky{
+	position:fixed;
+	top:0;
+	z-index:1000;
+	box-shadow:0 1px 2px rgba(0,0,0,.3);
+	 transition: all .2s ease-out;
+}
+/* Navbar Icon */
+.svg-menu-icon{
+	fill: none;
+	stroke: rgba(0,0,0,0.5);
+	stroke-width: 2px;
+	fill-rule: evenodd;
+}
+.navbar-dark .svg-menu-icon{
+	stroke: rgba(255,255,255,0.5);
+}
+.menu-icon-thin-bars{
+	stroke-width: 1px;
+}
+.menu-icon-thick-bars{
+	stroke-width: 5px;
+}
+.menu-icon-rounded-bars{
+	stroke-width: 3px;
+	stroke-linecap: round;
+}
+.menu-icon-filled{
+	fill: rgba(0,0,0,0.5);
+	stroke-width: 0px;
+}
+.navbar-dark .menu-icon-filled{
+	fill: rgba(255,255,255,0.5);
+}
+.navbar-toggler-icon{
+	background: none!important;
+	pointer-events: none;
+	width: 33px;
+	height: 33px;
+}
+.navbar-toggle.menu-icon-circles-vert{
+	margin-top:0px!important;
+}
+/* Handle Multi Level Navigation */
+.dropdown-menu .dropdown-menu{
+	border:none}
+@media (min-width:576px){
+	
+.navbar-expand-sm .dropdown-menu .dropdown-menu{
+	border:1px solid rgba(0,0,0,.15);
+	position:absolute;
+	left:100%;
+	top:-7px}.navbar-expand-sm .dropdown-menu .submenu-left{
+	right:100%;
+	left:auto}}@media (min-width:768px){
+	.navbar-expand-md .dropdown-menu .dropdown-menu{
+	border:1px solid rgba(0,0,0,.15);
+	border:1px solid rgba(0,0,0,.15);
+	position:absolute;
+	left:100%;
+	top:-7px}.navbar-expand-md .dropdown-menu .submenu-left{
+	right:100%;
+	left:auto}}@media (min-width:992px){
+	.navbar-expand-lg .dropdown-menu .dropdown-menu{
+	border:1px solid rgba(0,0,0,.15);
+	position:absolute;
+	left:100%;
+	top:-7px}.navbar-expand-lg .dropdown-menu .submenu-left{
+	right:100%;
+	left:auto}
+}
+/* = Bric adjustment margins
+-------------------------------------------------------------- */
+
+.mg-clear{
+	margin:0;
+}
+.mg-sm{
+	margin-top:10px;
+	margin-bottom:5px;
+}
+.mg-md{
+	margin-top:10px;
+	margin-bottom:20px;
+}
+.mg-lg{
+	margin-top:10px;
+	margin-bottom:40px;
+}
+img.mg-sm,img.mg-md,img.mg-lg{
+	margin-top: 0;
+}
+img.mg-sm{
+	margin-bottom:10px;
+}
+img.mg-md{
+	margin-bottom:30px;
+}
+img.mg-lg{
+	margin-bottom:50px;
+}
+
+/* = Buttons
+-------------------------------------------------------------- */
+
+.btn-d,.btn-d:hover,.btn-d:focus{
+	color:#FFF;
+	background:rgba(0,0,0,.3);
+}
+
+/* Prevent ugly blue glow on chrome and safari */
+button{
+	outline: none!important;
+}
+
+.btn-sq{
+	border-radius: 0px;
+}
+.btn-clean{
+	border:1px solid rgba(0,0,0,.08);
+	border-bottom-color:rgba(0,0,0,.1);
+	text-shadow:0 1px 0 rgba(0,0,1,.1);
+	box-shadow: 0 1px 3px rgba(0,0,1,.25), inset 0 1px 0 0 rgba(255,255,255,.15);
+}
+
+/* = Icons
+-------------------------------------------------------------- */
+.icon-sm{
+	font-size:18px!important;
+}
+.icon-md{
+	font-size:30px!important;
+}
+.icon-lg{
+	font-size:60px!important;
+}
+
+
+
+
+/* = Cards
+-------------------------------------------------------------- */
+.card-sq, .card-sq .card-header, .card-sq .card-footer{
+	border-radius:0;
+}
+.card-rd{
+	border-radius:30px;
+}
+.card-rd .card-header{
+	border-radius:29px 29px 0 0;
+}
+.card-rd .card-footer{
+	border-radius:0 0 29px 29px;
+}
+
+
+/* = Forms
+-------------------------------------------------------------- */
+
+.form-control{
+	border-color:rgba(0,0,0,.1);
+	box-shadow:none;
+}
+
+
+
+/* ScrollToTop button */
+
+.scrollToTop{
+	width:36px;
+	height:36px;
+	padding:5px;
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	opacity:0;
+	z-index:999;
+	transition: all .3s ease-in-out;
+	pointer-events:none;
+}
+.showScrollTop{
+	opacity: 1;
+	pointer-events:all;
+}
+.scroll-to-top-btn-icon{
+	fill: none;
+	stroke: #fff;
+	stroke-width: 2px;
+	fill-rule: evenodd;
+	stroke-linecap:round;
+}
+/* = Lightbox
+-------------------------------------------------------------- */
+
+a[data-lightbox]{
+	position: relative;
+	display: block;
+	text-align: center;
+}
+a[data-lightbox]:hover::before{
+	content:"+";
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial;
+	font-size:32px;
+	line-height: 42px;
+	width:50px;
+	height:50px;
+	margin-left:-25px;
+	border-radius: 50%;
+	background:rgba(0,0,0,.5);
+	color:#FFF;
+	font-weight:100;
+	z-index: 1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+a[data-lightbox]:hover img{
+	opacity: 0.6;
+	-webkit-animation-fill-mode: none;
+	animation-fill-mode:none;
+}
+.lightbox-caption{
+	padding: 20px;
+	color: #FFF;
+	background: rgba(0,0,0,.5);
+	position: absolute;
+	left: 15px;
+	right: 15px;
+	bottom: 5px;
+}
+.close-lightbox:hover,.next-lightbox:hover, .prev-lightbox:hover{
+	background:rgba(0,0,0,.5);
+}
+.next-lightbox, .prev-lightbox,.close-lightbox{
+	position: absolute;
+	padding:6px;
+	background:rgba(0,0,0,.3);
+	line-height:0;
+	transition: background .2s ease-in-out;
+	border-radius:.25rem;
+	border:none;
+	z-index:20;
+}
+.next-lightbox, .prev-lightbox{
+	top:45%;
+}
+.close-lightbox{
+	top:20px;
+	right:20px;
+}
+.next-lightbox{
+	right:25px;
+}
+.prev-lightbox{
+	left:25px;
+}
+.lightbox-prev-icon,.lightbox-next-icon,.lightbox-close-icon{
+	fill:none;
+	stroke: #fff;
+	stroke-width: 3px;
+	fill-rule: evenodd;
+	stroke-linecap:round;
+}
+.lightbox-close-svg{
+	pointer-events:none;
+}
+
+/* = Custom Styling
+-------------------------------------------------------------- */
+
+h1,h2,h3,h4,h5,h6,p,label,.btn,a{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:17px;
+}
+.container{
+	max-width:1140px;
+}
+.navbar-brand img{
+	width:150px;
+}
+.navbar-nav li a{
+	font-family:"DBHelvethaicaX-Reg";
+	color:#FEFFFF!important;
+	font-size:19px;
+}
+.h1-3-style{
+	font-family:"DBPenThaiX";
+	font-size:27px;
+	width:51.33%;
+}
+.h1-27-style{
+	font-size:24px;
+	font-family:"DBPenThaiX";
+	line-height:25px;
+}
+.h2-3-399-style{
+	font-family:"DBPenThaiX-Bold";
+	font-size:88px;
+}
+.bold{
+	font-family:"DBPenThaiX-Bold";
+	font-size:22px;
+}
+.cardx333{
+	border-style:solid;
+	background-color:#2E3A31;
+	display:block;
+	background-position:left center;
+	background-repeat:repeat;
+	text-shadow:0px 0px 0px #000000;
+	box-shadow:0px 0px 0px rgba(0,0,0,0.28);
+	border-color:#7C6661!important;
+	margin:0px 0px 0px 0px;
+	padding:44px 44px 44px 44px;
+	border-width:8px 8px 8px 8px;
+}
+.h2-5-399---style{
+	font-family:"DBPenThaiX-Bold";
+	font-size:88px;
+	line-height:105px;
+}
+.shore-bg-gradient-2{
+	;
+}
+.img-style{
+	width:150px;
+}
+.img-gooddess-2-style{
+	width:150px;
+}
+.img-gooddess-3-style{
+	width:150px;
+}
+.hero-subheader{
+	font-size:35px;
+	font-weight:normal;
+}
+.text-blue-gradient{
+	background-clip:text!important;
+	-webkit-background-clip:text!important;
+	background:linear-gradient(88deg, #D92026, #5EDBE5);
+	color:transparent!important;
+}
+.p-style{
+	font-family:"DBHelvethaicaX-Li";
+	font-size:23px;
+	line-height:27px;
+	color:#000000!important;
+	border-style:solid;
+	border-color:#C0C0C0!important;
+	border-width:0px 0px 1px 0px;
+}
+.p-bloc-4-style{
+	font-family:"DBHelvethaicaX-Reg";
+	font-weight:400;
+	line-height:16px;
+	font-size:13px;
+}
+.ar-card22{
+	padding-left:22px;
+}
+.img-9-style{
+	width:75px;
+}
+.img-10-style{
+	width:75px;
+}
+.img-11-style{
+	width:75px;
+}
+.text1{
+	font-family:"DBRamintraX-Bold";
+	color:#000000!important;
+	font-size:24px;
+}
+.text3{
+	color:#ED6C21!important;
+	font-family:"DBRamintraX-Bold";
+}
+.img-20-style{
+	width:108px;
+}
+.img-37988-style{
+	width:114px;
+}
+.img-22-style{
+	width:116px;
+	height:99px;
+}
+.img-23-style{
+	width:110px;
+}
+.card022{
+	background-image:url("img/127178161_3521735564531075_263028459005671072_n.jpg");
+	background-image: -webkit-image-set(url("img/127178161_3521735564531075_263028459005671072_n.webp") 1x,
+url("img/127178161_3521735564531075_263028459005671072_n.webp") 2x);background-image: image-set(url("img/127178161_3521735564531075_263028459005671072_n.jpg") 1x,
+url("img/127178161_3521735564531075_263028459005671072_n.jpg") 2x,url("img/127178161_3521735564531075_263028459005671072_n.webp") 1x,
+url("img/127178161_3521735564531075_263028459005671072_n.webp") 2x);
+}
+.cardxxx{
+	background-color:#D92026;
+	overflow:visible;
+	padding:22px 22px 22px 22px;
+	border-radius:33px 33px 33px 33px;
+}
+.img-pictu-style{
+	width:426px;
+}
+.p-bloc-7-style{
+	font-size:22px;
+	width:100%;
+	color:#FEFFFF!important;
+	font-family:"DBHelvethaicaX-Med";
+	line-height:25px;
+}
+.card92{
+	background-color:#935100;
+	padding:22px 22px 22px 22px;
+	border-radius:33px 33px 33px 33px;
+}
+.card29{
+	background-color:#1D265C;
+	padding:22px 22px 22px 22px;
+	border-radius:44px 44px 44px 44px;
+}
+.img-bloc-10-style{
+	width:111px;
+}
+.card99{
+	background-color:rgba(246,240,174,0.60);
+}
+.card000{
+	background-image:url("img/Yellow.png");
+	background-image: -webkit-image-set(url("img/Yellow.webp") 1x,
+url("img/Yellow.webp") 2x);background-image: image-set(url("img/Yellow.png") 1x,
+url("img/Yellow.png") 2x,url("img/Yellow.webp") 1x,
+url("img/Yellow.webp") 2x);
+	background-color:#AC2A41;
+	padding:88px 88px 88px 88px;
+}
+.frame99{
+	padding:22px 22px 22px 22px;
+}
+.img-มีชั-style{
+	width:459px;
+}
+.h2-style{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:27px;
+	width:92.4%;
+	color:#FEFFFF!important;
+	line-height:28px;
+}
+.img-bloc-1-style{
+	width:510px;
+}
+.text-span-bloc-5-color{
+	font-family:"DBRamintraX-Bold";
+	color:#002026!important;
+	font-size:28px;
+}
+.cardxx{
+	border-style:solid;
+	border-color:#E27738!important;
+	padding:20px 20px 20px 20px;
+	border-radius:44px 44px 44px 44px;
+	border-width:4px 4px 4px 4px;
+}
+.h2-1-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:44px;
+}
+.h4-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:33px;
+}
+.img-25414-style{
+	width:45px;
+}
+.img-circ-style{
+	width:45px;
+}
+.img-39852-style{
+	width:45px;
+}
+.cardtext3{
+	padding:1px 1px 1px 1px;
+}
+.p-15-style{
+	font-family:"DBHelvethaicaX-Li";
+	font-size:23px;
+	line-height:28px;
+	width:100%;
+}
+.card123{
+	border-style:solid;
+	margin:13px 13px 13px 13px;
+	padding:22px 22px 22px 22px;
+	border-width:1px 1px 1px 1px;
+}
+.card-blue{
+	background-color:#5EB0D1;
+	padding:1px 1px 1px 1px;
+}
+.img-bloc-14-style{
+	width:637px;
+}
+.card12{
+	padding:1px 1px 14px 1px;
+}
+.h2-news-style{
+	font-family:"DBHelvethaicaX-Med";
+	color:#212121!important;
+	font-size:44px;
+}
+.button11{
+	font-family:"DBRamintraX-Bold";
+	background-color:#D62226;
+}
+.btn-style{
+	width:100%;
+	padding-top:8px;
+	padding-bottom:8px;
+	border-radius:13px 13px 13px 13px;
+}
+.card44{
+	background-color:#FEFFFF;
+}
+.img-gooddess-333-style{
+	width:150px;
+}
+.h3-bloc-15-style{
+	font-family:"DBRamintraX-Bold";
+	font-size:24px;
+}
+.textxxx{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:44px;
+	color:#FEFFFF!important;
+}
+.img-38-style{
+	width:362px;
+}
+.wdcard{
+	background:linear-gradient(98deg, #E12C00  0%, #FF7D78 97%);
+}
+.wdcard2{
+	color:transparent!important;
+	background-color:#F6F5F7;
+	box-shadow:0px 3px 18px #797979;
+	padding:33px 33px 33px 33px;
+	border-radius:34px 34px 34px 34px;
+}
+.img-43-style{
+	width:45px;
+}
+.row-32-style{
+	width:100%;
+	border-color:#FEFFFF!important;
+}
+.text222{
+	color:#4F71B1!important;
+}
+.h2-14-style{
+	font-family:Lato;
+	font-size:18px;
+	font-weight:900;
+}
+.top11{
+	color:#424242!important;
+}
+.p-30-style{
+	font-size:29px;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#424242!important;
+}
+.btn-padding{
+	padding-top:10px;
+	padding-bottom:10px;
+	font-family:"DBHelvethaicaX-Reg";
+	background:linear-gradient(98deg, #E73C20 2%, #FF7D78  100%);
+	width:100%;
+	font-size:21px;
+	color:#FFFFFF!important;
+	border-radius:16px 16px 16px 16px;
+}
+.ccsxx{
+	border-style:_popUpItemAction:;
+	bottom:22px;
+}
+.buttonxxx{
+	font-family:"Lato";
+	font-weight:900;
+}
+.btn-donate-style{
+	font-size:21px;
+	background:linear-gradient(127deg, #E13934 0%, #FF7D78 98%);
+	width:62.86%;
+	padding-top:4px;
+	padding-bottom:4px;
+	border-radius:23px 23px 23px 23px;
+}
+.h3- วิธีการใช้งาน-style{
+	font-size:18px;
+}
+.h3-10-style{
+	font-size:18px;
+}
+.h3-11-style{
+	font-size:18px;
+}
+.h3-12-style{
+	font-size:18px;
+}
+.img-43-gooddess-333-style{
+	width:149px;
+}
+.h4-เกี่ยวกับเรา-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:27px;
+}
+.footer-link{
+	color:#FEFFFF!important;
+	font-size:17px;
+}
+.h4-หน้าแรก-style{
+	font-size:16px;
+	font-family:"SukhumvitSet-Text";
+}
+.h4-14-style{
+	font-size:16px;
+}
+.h2-9-style{
+	font-size:44px;
+	font-family:"DBHelvethaicaX-Med";
+}
+.img-goodded-style{
+	width:403px;
+}
+.buttonxxx34{
+	font-family:"DBHelvethaicaX-Reg";
+	background-color:transparent;
+	font-size:18px;
+	color:#E13934!important;
+	border-style:solid;
+	border-color:#E13934!important;
+	line-height:22px;
+	border-width:1px 1px 1px 1px;
+}
+.btn-เพิ่มเติม-style{
+	width:36.15%;
+	font-family:"DBHelvethaicaX-Med";
+	line-height:25px;
+}
+.field-style{
+	height:46px;
+	width:100%;
+	font-family:"DBHelvethaicaX-Li";
+	border-style:solid;
+	margin-bottom:12px;
+	font-size:21px;
+	border-color:#D5D5D5!important;
+	background-color:#FEFFFF;
+	color:#000000!important;
+	text-transform:uppercase;
+	border-radius:22px 22px 22px 22px;
+	border-width:1px 1px 1px 1px;
+}
+.pxd3{
+	font-family:"SukhumvitSet-SemiBold";
+	font-size:17px;
+}
+.img-37-style{
+	width:458px;
+	margin-top:0px;
+}
+.hxd311{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:44px;
+}
+.btn-button-style{
+	width:68.13%;
+	font-family:"DBHelvethaicaX-Med";
+	border-style:none;
+	border-color:#FEFFFF!important;
+	background-color:#F4E98C;
+	color:rgba(148,17,0,0.71)!important;
+	font-size:22px;
+	padding:2px 6px 2px 6px;
+	border-radius:8px 8px 8px 8px;
+}
+.cardmenu{
+	background-color:#F3E78B;
+	border-color:#F4E98C!important;
+	padding:1px 1px 1px 1px;
+}
+.img-sec3-style{
+	width:427px;
+	margin:-22px -22px 0px 0px;
+}
+.p-bloc-3-style{
+	font-family:"DBPenThaiX";
+	font-size:24px;
+	line-height:27px;
+	width:82.15%;
+}
+.img-44-style{
+	width:180px;
+}
+.cardadmin{
+	background-color:#EAEAEA;
+}
+.cardadmin2{
+	border-style:none;
+	border-color:#4E79BB!important;
+	color:transparent!important;
+	box-shadow:4px 0px 29px rgba(0,0,0,0.21);
+	background-color:#F3F6FB;
+	padding:29px 33px 29px 33px;
+	border-radius:22px 22px 22px 22px;
+	border-width:1px 1px 1px 1px;
+}
+.hi6{
+	color:#FEFFFF!important;
+	font-family:"Lato";
+	font-weight:900;
+	letter-spacing:1px;
+}
+.cardpopup{
+	background-color:#FEFFFF;
+	border-style:solid;
+	border-color:#D72229!important;
+	padding:15px 15px 15px 15px;
+	border-radius:22px 22px 22px 22px;
+	border-width:1px 1px 1px 1px;
+}
+.img-46-style{
+	width:109px;
+	padding:5px 5px 5px 5px;
+	border-radius:71px 71px 71px 71px;
+}
+.h3-ชัยพัฒนา-style{
+	font-size:22px;
+	font-family:"DBHelvethaicaX-Med";
+}
+.p-16342-style{
+	font-size:14px;
+	line-height:14px;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#000000!important;
+}
+.text{
+	color:#3F3F3F!important;
+	font-family:"DBHelvethaicaX-Li";
+}
+.imagepopup{
+	padding:4px 4px 4px 4px;
+}
+.icon1{
+	margin-bottom:22px;
+}
+.img-rati-style{
+	width:52px;
+}
+.btn-6-style{
+	width:35.09%;
+	border-style:none;
+	border-color:#D72229!important;
+	background-color:#F4842C;
+	font-size:8px;
+	font-family:"SukhumvitSet-SemiBold";
+	padding:4px 2px 4px 2px;
+	border-radius:12px 12px 12px 12px;
+	border-width:1px 1px 1px 1px;
+}
+.divider-bloc-24-padding{
+	padding-top:2px;
+	padding-bottom:2px;
+}
+.divider-0-padding{
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.card88{
+	padding-right:11px;
+	padding-left:11px;
+}
+.text33{
+	font-family:"DBHelvethaicaX-Med";
+	color:#D82026!important;
+	font-size:31px;
+}
+.textcc{
+	color:#FFFFFF!important;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:22px;
+}
+.h2-bloc-14-style{
+	font-family:"DBHelvethaicaX-Med";
+	color:#D52126!important;
+}
+.h3-organized-by-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:33px;
+	color:#D71E27!important;
+}
+.h2-บริจาคความดี-style{
+	font-size:90px;
+	color:#FEFFFF!important;
+	font-family:"DBHelvethaicaX-Med";
+}
+.p-bloc-21-style{
+	font-size:27px;
+	font-family:"DBHelvethaicaX-Reg";
+}
+.img-bloc-6-style{
+	width:99px;
+	border-style:solid;
+	border-color:#DF5741!important;
+	border-radius:45px 45px 45px 45px;
+	border-width:2px 2px 2px 2px;
+}
+.icon{
+	margin-right:18px;
+	margin-bottom:12px;
+}
+.good1{
+	padding:4px 4px 4px 4px;
+}
+.container-div-bloc-6-style{
+	height:45px;
+}
+.form{
+	border-style:solid;
+	border-color:#D42125!important;
+	border-radius:44px 44px 44px 44px;
+}
+.field-bloc-6-style{
+	height:41px;
+	font-family:"DBHelvethaicaX-Li";
+	font-size:19px;
+}
+.card28{
+	border-style:solid;
+	border-color:#D62226!important;
+	background-color:#FEFFFF;
+	padding:33px 33px 33px 33px;
+	border-radius:33px 33px 33px 33px;
+	border-width:2px 2px 2px 2px;
+}
+.container-div-0-bloc-6-style{
+	height:24px;
+}
+.h2-การใช้งาน -style{
+	font-size:48px;
+}
+.button{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:22px;
+	padding:4px 4px 4px 4px;
+}
+.btn-button-style:hover{
+	background-color:#941100;
+	color:#FEFFFF!important;
+}
+.container-div-bloc-23-style{
+	width:100%;
+}
+.cardg{
+	border-style:solid;
+}
+.bloc-bloc-23-style{
+	border-style:none;
+	border-color:#D81F26!important;
+	background-color:#FEFFFF;
+	box-shadow:8px 1px 7px rgba(0,0,0,0.08);
+	margin-bottom:33px;
+	padding:12px 12px 12px 12px;
+	border-radius:22px 22px 22px 22px;
+	border-width:1px 1px 1px 1px;
+}
+.img-good-logi-style{
+	width:48px;
+}
+.h1-สถานะของเรา-style{
+	font-size:22px;
+	color:#552815!important;
+}
+.h1-style{
+	font-size:25px;
+	font-family:"DBHelvethaicaX-Med";
+	color:#5E5E5E!important;
+}
+.bloc-bloc-23-style:hover{
+	background-color:rgba(94,222,232,0.38);
+}
+.btn-log-in-style{
+	width:43.11%;
+	padding-top:8px;
+	padding-bottom:8px;
+}
+.buttonxxx34:hover{
+	background-color:#D81F26;
+	color:#FEFFFF!important;
+}
+.h1-เข้าสู่ระบบ-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:21px;
+	color:#000000!important;
+}
+.h1-สมัครสมาชิก-style{
+	width:44.05%;
+	color:#D81F26!important;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:22px;
+	line-height:25px;
+	border-style:solid;
+	border-color:#D81F26!important;
+	border-width:0px 0px 1px 0px;
+}
+.h1-ลืมรหัสผ่าน-style{
+	width:100%;
+	font-size:18px;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#929292!important;
+}
+.img-gooddeed-lo-style{
+	width:151px;
+}
+.h1-สมัครสมาชิก-style:hover{
+	color:#929292!important;
+}
+.h3-style{
+	font-size:21px;
+	color:#FEFFFF!important;
+	font-family:"DBHelvethaicaX-Med";
+	width:100%;
+}
+.cardfit{
+	padding-left:4px;
+	padding-right:4px;
+}
+.checkbox-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#4E79BB!important;
+	font-size:12px;
+	margin-bottom:33px;
+}
+.cardu{
+	background-color:rgba(195,193,144,0.80);
+	padding:15px 15px 15px 15px;
+}
+.h4-color{
+	color:#2C4555!important;
+	font-size:28px;
+}
+.lable{
+	font-family:"SukhumvitSet-Text";
+	font-size:12px;
+}
+.h4-bloc-4-style{
+	color:#2C4555!important;
+}
+.factory-button{
+	background:linear-gradient(90deg, #2C4555 0%, #C3C08F 100%);
+	font-size:14px;
+	font-weight:normal;
+	padding-right:20px;
+	padding-left:20px;
+	line-height:30px;
+	text-transform:uppercase;
+	letter-spacing:0.03em;
+	color:#FEFFFF!important;
+	font-family:"SukhumvitSet-SemiBold";
+	border-width:0px 0px 0px 0px;
+}
+.factory-button:hover{
+	background-color:#2C4555;
+}
+.btn-style:hover{
+	background-color:#2C4555;
+}
+.btn-style:active{
+	background-color:#ECA36A;
+}
+.cardcon{
+	background-color:#D62226;
+	padding:0px 0px 0px 0px;
+}
+.cardfit666{
+	background-color:#FEFFFF;
+	padding:0px 0px 0px 0px;
+}
+.cardheader{
+	padding-left:12px;
+}
+.card2{
+	padding-left:0px;
+	padding-right:0px;
+	background-color:#FEFFFF;
+}
+.card12x3{
+	text-align:center;
+	padding-top:22px;
+}
+.cardtrash{
+	background:linear-gradient(153deg, #1CBA9D 0%, #48C77C 99%);
+	border-radius:22px 22px 22px 22px;
+}
+.cardtrash2{
+	margin-top:22px;
+}
+.cardnewpro{
+	padding:0px 3px 12px 3px;
+}
+.img-new-pro-style{
+	width:54px;
+}
+.img-calend-style{
+	width:54px;
+}
+.img-accou-style{
+	width:54px;
+}
+.fit2{
+	border-style:_popUpItemAction:;
+	background-color:#F3F6FB;
+	margin-top:0px;
+	padding:15px 15px 15px 15px;
+	border-radius:22px 22px 0px 0px;
+}
+.cardblog{
+	border-style:_popUpItemAction:;
+	border-color:#D62226!important;
+	padding-left:3px;
+	padding-right:3px;
+	padding-bottom:22px;
+	margin:0px 0px 0px 0px;
+	border-width:1px 1px 1px 1px;
+}
+.cardtrash8{
+	border-style:solid;
+	border-radius:0px 0px 12px 12px;
+}
+.row45{
+	padding:4px 4px 4px 4px;
+}
+.h2-20-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:18px;
+	color:#000000!important;
+	width:69.23%;
+	margin-top:12px;
+	line-height:19px;
+}
+.p-bloc-1-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#5E5E5E!important;
+	font-size:18px;
+	line-height:22px;
+}
+.readmore{
+	font-family:"DBHelvethaicaX-Reg";
+	color:#000000!important;
+	font-size:16px;
+}
+.gooddeed1{
+	border-style:none;
+	background:linear-gradient(117deg, #EAEAEA 3%, #FFFFFF 100%);
+	box-shadow:0px 2px 7px #C0C0C0;
+	border-radius:22px 22px 22px 22px;
+}
+.gooddeedrow12x{
+	margin-top:22px;
+}
+.h3-bloc-36-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#505050!important;
+	font-size:19px;
+	line-height:20px;
+}
+.img-profil-style{
+	width:43px;
+}
+.img-bloc-36-style{
+	width:100%;
+}
+.row12px{
+	background-color:#FEFFFF;
+	margin-bottom:27px;
+}
+.h2-sign-up-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+	color:#ffffff;
+}
+.qq{
+	padding:2px 2px 2px 2px;
+}
+.h2-จำนวนรายการ-style{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:16px;
+}
+.nnfint{
+	font-family:"Kanit-Light";
+	font-size:10px;
+}
+.h2-ab124566432-style{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:17px;
+	color:#D62226!important;
+}
+.card10x{
+	margin-bottom:4px;
+	margin-left:3px;
+	margin-right:3px;
+}
+.cardx31{
+	padding:0px 0px 0px 0px;
+}
+.card72df{
+	border-style:none;
+	padding:0px 0px 0px 0px;
+}
+.card-body-12-style{
+	width:60.66%;
+	background-color:#D62226;
+	height:35px;
+	padding:0px 0px 0px 0px;
+	border-radius:33px 33px 33px 33px;
+}
+.p-7-bloc-1-style{
+	font-family:"DBHelvethaicaX-Med";
+	color:#FEFFFF!important;
+	width:100%;
+	font-size:20px;
+	border-radius:33px 33px 33px 33px;
+	padding-top:3px;
+}
+.p-8-bloc-1-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#A9A9A9!important;
+	font-size:23px;
+}
+.p-11-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#000000!important;
+	font-size:22px;
+	text-align:center;
+	line-height:18px;
+	opacity:0.9;
+}
+.bloc-0-bloc-1-style{
+	width:100%;
+	height:46px;
+	margin-bottom:14px;
+}
+.btn-1-style{
+	width:100%;
+	background-color:transparent;
+	font-family:"DBHelvethaicaX-Med";
+	color:#D62226!important;
+	border-style:solid;
+	border-color:#D62226!important;
+	text-align:left;
+	font-size:19px;
+	margin-bottom:12px;
+	height:55px;
+	padding:12px 12px 12px 12px;
+	border-radius:10px 10px 10px 10px;
+}
+.btn-1-style:hover{
+	color:#797979!important;
+	border-color:#ECA36A!important;
+	background-color:#FEFFFF;
+}
+.btn-1-style:active{
+	background-color:#ECA36A;
+	color:#FEFFFF!important;
+}
+.card124{
+	margin-left:12px;
+	margin-right:3px;
+}
+.radio{
+	margin-top:10px;
+}
+.cardfit777{
+	padding:0px 0px 0px 0px;
+}
+.card-body-bloc-1-style{
+	width:100%;
+	height:98px;
+	background-color:#F3F6FA;
+	border-radius:12px 12px 12px 12px;
+}
+.img-camera-style{
+	width:29px;
+	margin-top:22px;
+}
+.row-57-style{
+	padding-bottom:18px;
+	width:100%;
+}
+.card-body-18-style{
+	background-color:#008E50;
+	color:#FEFFFF!important;
+	height:29px;
+	box-shadow:2px 2px 10px #D5D5D5;
+	padding:0px 0px 0px 0px;
+	border-radius:33px 33px 33px 33px;
+}
+.p-22-style{
+	width:NaN%;
+}
+.p-7-style{
+	font-family:"DBHelvethaicaX-Med";
+	width:100%;
+	color:#008F51!important;
+	font-size:20px;
+}
+.p-8-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	color:#0096FF!important;
+	font-size:20px;
+}
+.bloc-bloc-1-style{
+	width:100%;
+}
+.link-style{
+	font-family:"Kanit-Light";
+	font-size:14px;
+	text-align:center;
+	width:100%;
+	color:#797979!important;
+}
+.img-31-style{
+	width:364px;
+}
+.cardbbb{
+	margin-bottom:12px;
+	padding:5px 5px 5px 5px;
+}
+.btn-10-00-12-00-น--style{
+	width:100%;
+	font-family:"Kanit-Regular";
+	font-size:11px;
+	color:#008F51!important;
+	background-color:#FEFFFF;
+	border-style:none;
+	border-color:#C0C0C0!important;
+	box-shadow:0px 0px 6px #EAEAEA;
+	padding:10px 3px 14px 3px;
+	border-radius:8px 8px 8px 8px;
+}
+.btn-10-00-12-00-น--style:hover{
+	color:#FEFFFF!important;
+	background-color:#ECA36A;
+}
+.btn-10-00-12-00-น--style:active{
+	background-color:#ECA36A;
+	color:#FEFFFF!important;
+}
+.btn-button-style:active{
+	color:#FEFFFF!important;
+}
+.btn-16-00-18-00-น--style{
+	width:100%;
+	font-family:"Kanit-Regular";
+	font-size:11px;
+	color:#FF2600!important;
+	background-color:#FEFFFF;
+	box-shadow:0px 0px 6px #EAEAEA;
+	border-style:none;
+	border-color:#D5D5D5!important;
+	margin-bottom:10px;
+	padding:10px 3px 14px 3px;
+	border-radius:8px 8px 8px 8px;
+}
+.btn-16-00-18-00-น--style:hover{
+	color:#FEFFFF!important;
+	background-color:#ECA369;
+}
+.btn-16-00-18-00-น--style:active{
+	background-color:#ECA36A;
+	color:#FEFFFF!important;
+}
+.card22x{
+	margin-bottom:44px;
+	background-color:transparent;
+	border-style:none;
+	margin-top:44px;
+}
+.container-div-style{
+	height:0px;
+}
+.btn-6-style:hover{
+	background-color:#ECA36A;
+}
+.btn-check-out-style{
+	font-size:20px;
+	font-family:"DBHelvethaicaX-Med";
+	background-color:transparent;
+	color:#D71E27!important;
+	text-align:center;
+	width:100%;
+	padding-top:8px;
+	padding-bottom:8px;
+	border-radius:7px 7px 7px 7px;
+}
+.btn-check-out-style:hover{
+	color:#00894D!important;
+}
+.btn-11-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+	background-color:#D62226;
+	padding-top:4px;
+	padding-bottom:4px;
+	border-radius:7px 7px 7px 7px;
+}
+.btn-11-style:hover{
+	background-color:#919191;
+}
+.btn-padding-top{
+	padding-top:2px;
+	padding-bottom:2px;
+	border-radius:7px 7px 7px 7px;
+}
+.h2-trash-now-style{
+	width:95.65%;
+	font-family:"Kanit-Medium";
+	color:#000000!important;
+	font-size:18px;
+}
+.row1{
+	background:linear-gradient(98deg, #D62226 0%, #F89000 98%);
+	width:100%;
+	padding:12px 55px 0px 0px;
+}
+.h2-5-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:20px;
+	color:#FEFFFF!important;
+}
+.fit12{
+	background-color:#FEFFFF;
+	border-radius:0px 0px 0px 0px;
+	padding:22px 4px 22px 4px;
+}
+.rowb12{
+	margin-bottom:22px;
+}
+.h2-6-style{
+	width:100%;
+	font-size:21px;
+	font-family:"DBHelvethaicaX-Med";
+	color:#D62226!important;
+}
+.link3{
+	font-size:11px;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#FEFFFF!important;
+}
+.h2-edit-style{
+	font-size:19px;
+	font-family:"DBHelvethaicaX-Med";
+	color:#FEFFFF!important;
+}
+.h2-7-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	color:#929292!important;
+	font-size:22px;
+}
+.text-span-color{
+	color:#c0c0c0;
+}
+.card2333{
+	box-shadow:0px 0px 10px #EAEAEA;
+	border-radius:22px 22px 22px 22px;
+}
+.cardfith2{
+	padding-left:33px;
+}
+.fit4{
+	padding:0px 0px 0px 0px;
+}
+.h2-8-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:22px;
+	color:#5E5E5E!important;
+}
+.field-bloc-1-style{
+	height:39px;
+	position:relative;
+	top:8px;
+	border-style:solid;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:18px;
+	color:#919191!important;
+	border-color:rgba(208,208,208,0.72)!important;
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:0px;
+	width:100%;
+	border-width:0px 0px 1px 0px;
+}
+.accept1{
+	margin-top:23px;
+}
+.img-90-style{
+	width:150px;
+}
+.cardty32{
+	margin-top:12px;
+	border-style:solid;
+	border-color:#EAEAEA!important;
+	background-color:rgba(255,255,255,0.14);
+	padding:6px 6px 6px 6px;
+	border-radius:44px 44px 44px 44px;
+	border-width:1px 1px 1px 1px;
+}
+.cardfit3x{
+	padding:0px 0px 0px 0px;
+}
+.fitxx{
+	padding:0px 0px 0px 0px;
+}
+.card3x{
+	padding:4px 4px 4px 4px;
+}
+.h2-84-500-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Li";
+	font-size:20px;
+	color:#FEFFFF!important;
+}
+.h2-menu-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#FEFFFF!important;
+	font-size:20px;
+}
+.cardfitt{
+	padding:2px 2px 2px 2px;
+}
+.img-26-style{
+	width:34px;
+}
+.h2-เมนู-style{
+	width:100%;
+	font-size:11px;
+	font-family:"Kanit-Light";
+	color:#5E5E5E!important;
+}
+.row5px{
+	padding-left:22px;
+	padding-right:22px;
+}
+.fixx3{
+	margin-top:22px;
+	padding:0px 0px 0px 0px;
+}
+.cardfit333{
+	box-shadow:0px 2px 7px #EAEAEA;
+	border-style:none;
+	padding:10px 22px 10px 33px;
+	border-radius:12px 12px 12px 12px;
+}
+.rownn{
+	margin-top:8px;
+	margin-bottom:8px;
+}
+.fix44{
+	padding:2px 2px 2px 2px;
+}
+.p-35-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	color:#D62226!important;
+	font-size:20px;
+}
+.p-36-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:18px;
+	color:#212121!important;
+	line-height:20px;
+}
+.cardfit44{
+	background-color:transparent;
+}
+.img-bloc-21-style{
+	width:274px;
+}
+.cardfit3{
+	padding:0px 0px 0px 0px;
+}
+.row2{
+	padding-top:22px;
+	background-color:#941100;
+	padding-bottom:22px;
+	background:linear-gradient(126deg, #521B92 0%, #FF9300  99%);
+}
+.card-body-bloc-37-style{
+	width:60.66%;
+	height:35px;
+	background-color:#FF9300;
+	color:#FEFFFF!important;
+	padding:0px 0px 0px 0px;
+	border-radius:33px 33px 33px 33px;
+}
+.h2-bloc-37-style{
+	width:100%;
+	color:#FF9300!important;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+}
+.h2-bloc-36-style{
+	width:100%;
+	font-size:19px;
+	color:#D62226!important;
+}
+.p-bloc-39-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:21px;
+	color:#521B92!important;
+}
+.row6{
+	padding-top:12px;
+}
+.p-307-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:21px;
+	color:#D62226!important;
+	line-height:25px;
+}
+.fit7{
+	padding-left:8px;
+	padding-right:8px;
+}
+.fit10{
+	padding:2px 2px 2px 2px;
+}
+.h3- -สร้างกิจกรรม-style{
+	font-size:19px;
+}
+.h3- -รายชื่อ-style{
+	font-size:21px;
+}
+.num1{
+	padding:0px 0px 0px 0px;
+}
+.text-span-bloc-49-color{
+	color:#000000;
+}
+.p-2-style{
+	width:100%;
+	font-size:22px;
+	font-family:"DBHelvethaicaX-Li";
+}
+.p-1-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:19px;
+	color:#D62226!important;
+}
+.text-span-bloc-36-color{
+	color:#FF2600!important;
+}
+.container-div-bloc-36-style{
+	width:100%;
+	padding:0px 6px 0px 6px;
+}
+.h2-19-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+	color:#D62226!important;
+	line-height:22px;
+	width:100%;
+}
+.newrow{
+	background-color:#D62226;
+	background:linear-gradient(107deg, #D62226 0%, #FF9300 100%);
+	padding-top:12px;
+	padding-bottom:22px;
+}
+.p-105-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:21px;
+	color:#008E00!important;
+}
+.p-bloc-53-style{
+	width:100%;
+	font-size:22px;
+	line-height:22px;
+}
+.rowx{
+	background-color:#D62226;
+	background:linear-gradient(91deg, #D62226   0%, #FF9F00 100%);
+	padding-bottom:22px;
+	padding-top:22px;
+}
+.textbig{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:33px;
+	color:var(--swatch-var-Unnamed-Swatch)!important;
+}
+.img-88-style{
+	width:169px;
+	filter:grayscale(88%);
+}
+.h2-30-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+}
+.btn-แก้ไข-style{
+	width:100%;
+	background-color:#6E1720;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:17px;
+	padding-top:4px;
+	padding-bottom:4px;
+	border-radius:12px 12px 12px 12px;
+}
+.img-2417835-style{
+	width:22px;
+}
+.p-bloc-49-style{
+	font-size:16px;
+	font-family:"DBHelvethaicaX-Li";
+	color:#000000!important;
+}
+.textsmall{
+	font-family:"DBHelvethaicaX-Li";
+	font-size:18px;
+	color:#3F3F3F!important;
+}
+.cardhome{
+	border-style:none;
+	border-color:#D5D5D5!important;
+	box-shadow:0.00px 0.00px 24px rgba(0,0,0,0.10);
+	padding:44px 22px 44px 22px;
+	border-radius:11px 11px 11px 11px;
+	border-width:1px 1px 1px 1px;
+}
+.p-bloc-16-style{
+	width:100%;
+	font-size:22px;
+}
+.h2-bloc-10-style{
+	width:100%;
+	font-size:22px;
+	font-family:"DBHelvethaicaX-Li";
+	color:#FEFFFF!important;
+}
+.readmore:hover{
+	color:#D62226!important;
+}
+.row20x{
+	margin-top:33px;
+}
+.p-bloc-36-style{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:20px;
+	color:#FF2600!important;
+}
+.p-65-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:20px;
+	color:#FF9300!important;
+}
+.btn-ยืนยัน-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+	color:#FEFFFF!important;
+	background-color:#521B92;
+	border-radius:7px 7px 7px 7px;
+}
+.textgood{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:19px;
+	color:var(--swatch-var-Unnamed-Swatch-copy-1)!important;
+}
+.btn-ตกลง-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+	color:#FEFFFF!important;
+	background-color:#6E1720;
+	padding-top:8px;
+	padding-bottom:8px;
+	border-radius:7px 7px 7px 7px;
+}
+.cardpa{
+	padding:0px 0px 0px 0px;
+}
+.radio-style{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:22px;
+	color:#000000!important;
+	width:54.04%;
+}
+label{
+	font-size:21px;
+}
+.row3{
+	padding-top:22px;
+	padding-bottom:22px;
+	background-color:#935100;
+	background:linear-gradient(124deg, #6E1720 0%, #371E04 98%);
+}
+.cardtec{
+	background-color:#6E1720;
+	padding:3px 3px 3px 3px;
+}
+.textcon{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:21px;
+	color:#008F51!important;
+}
+.textbold{
+	font-family:"DBHelvethaicaX-Med";
+	color:#D62226!important;
+}
+.cardfit12{
+	background-color:#FEFFFF;
+}
+.btn-34-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:21px;
+	background-color:#FEFFFF;
+	color:#D62226!important;
+	border-radius:16px 16px 16px 16px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.btn-35-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:21px;
+	color:#FEFFFF!important;
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-1);
+	border-radius:19px 19px 19px 19px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.btn-2-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:19px;
+	color:#D71E27!important;
+	background-color:#FEFFFF;
+	line-height:19px;
+	border-style:solid;
+	border-color:#D71E27!important;
+	padding:14px 3px 14px 3px;
+	border-radius:31px 31px 31px 31px;
+	border-width:1px 1px 1px 1px;
+}
+.cardsdg{
+	padding-left:3px;
+}
+.cardsdgim{
+	padding:3px 3px 3px 3px;
+}
+.h3-bloc-3-style{
+	font-size:20px;
+	font-family:"MADEOuterSansAlt";
+	color:#F36F21!important;
+}
+.container-div-bloc-3-style{
+	height:68px;
+}
+.btn-2-style:hover{
+	background-color:#D71E27;
+	color:#FEFFFF!important;
+}
+.h1-bloc-3-style{
+	font-family:"MADEOuterSansAlt";
+	width:100%;
+	background-color:#D71E27;
+	font-size:18px;
+	color:#FEFFFF!important;
+	padding:22px 22px 22px 22px;
+	border-radius:55px 55px 55px 55px;
+}
+.fitwhite{
+	background-color:#FFFFFF;
+	padding:0px 0px 0px 0px;
+}
+.p-bloc-43-style{
+	width:100%;
+	font-size:18px;
+	line-height:19px;
+	font-family:"DBHelvethaicaX-Li";
+	color:#212121!important;
+}
+.p-252-style{
+	font-size:16px;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#D71E27!important;
+}
+.row14x{
+	margin:0px 0px 0px 0px;
+	padding:6px 6px 6px 6px;
+}
+.cardfit1{
+	padding-left:11px;
+	padding-right:11px;
+}
+.img-profile1-4-style{
+	width:66px;
+	border-style:solid;
+	border-color:#5EDBE5!important;
+	border-width:2px 2px 2px 2px;
+}
+.row10x{
+	margin-bottom:11px;
+}
+.img-img-12-style{
+	width:148px;
+}
+.number{
+	width:100%;
+	justify-content:center;
+	align-items:center;
+	background-color:#D71E27;
+	background-size:length;
+	height:40px;
+	padding:0px 0px 0px 0px;
+	border-radius:44px 44px 44px 44px;
+}
+.h3-bloc-46-style{
+	width:100%;
+	padding:4px 4px 4px 4px;
+}
+.text-span-style{
+	font-style:normal;
+}
+.text55{
+	color:#D71E27!important;
+}
+.btn-23-style{
+	width:100%;
+	font-size:17px;
+	font-family:"DBHelvethaicaX-Reg";
+	color:#FEFFFF!important;
+	background-color:#ED861F;
+	padding:0px 4px 0px 4px;
+	border-radius:12px 12px 12px 12px;
+}
+.btn-18-style{
+	width:100%;
+	background-color:#D71E27;
+	padding-bottom:4px;
+	border-radius:18px 18px 18px 18px;
+	border-style:none;
+	padding-top:4px;
+}
+.card13x{
+	border-style:solid;
+	border-top-right-radius:0px;
+	border-top-left-radius:0px;
+	border-bottom-right-radius:0px;
+	border-color:#C3C08F!important;
+	border-width:0px 0px 0px 1px;
+}
+.footb{
+	font-size:13px;
+	font-family:"SukhumvitSet-SemiBold";
+	color:#FEFFFF!important;
+}
+.foot{
+	font-size:13px;
+	font-family:"SukhumvitSet-Text";
+	color:#FEFFFF!important;
+}
+.h3-bloc-18-style{
+	line-height:19px;
+}
+.nn{
+	color:#C3C08F!important;
+}
+.card13{
+	margin-top:33px;
+}
+.card-body-style{
+	height:264px;
+	border-style:none;
+	border-radius:44px 44px 44px 44px;
+}
+.p-18-style{
+	width:100%;
+	font-size:18px;
+	font-family:"SukhumvitSet-SemiBold";
+	color:#2C4555!important;
+	line-height:25px;
+}
+.p-46-style{
+	font-family:"DBHelvethaicaX-Reg";
+	font-size:22px;
+	color:var(--swatch-var-Unnamed-Swatch-copy-20)!important;
+}
+.btn-14-style{
+	width:100%;
+	font-family:"DBHelvethaicaX-Med";
+	font-size:22px;
+	color:var(--swatch-var-Unnamed-Swatch-copy-3)!important;
+	border-radius:11px 11px 11px 11px;
+	border-style:solid;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-3)!important;
+	background-color:var(--swatch-var-Unnamed-Swatch-Copy-Copy-copy-6);
+}
+.btn-14-style:hover{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-3);
+	color:var(--swatch-var-Unnamed-Swatch)!important;
+}
+.rowdd{
+	padding-top:22px;
+	padding-bottom:22px;
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-14);
+}
+.img-177-style{
+	width:157px;
+}
+.img-placeholder-us-style{
+	width:51px;
+}
+.btn-69-style{
+	width:100%;
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-21);
+	color:var(--swatch-var-Unnamed-Swatch-copy-20)!important;
+	font-size:22px;
+	border-radius:26.5px 26.5px 26.5px 26.5px;
+}
+.p-bloc-69-style{
+	line-height:20px;
+}
+.btn-68-style{
+	width:100%;
+	padding-top:4px;
+	padding-bottom:4px;
+	border-radius:18px 18px 18px 18px;
+	border-style:dotted;
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-1);
+}
+.h2-dashboard-style{
+	font-size:28px;
+	color:var(--swatch-var-Unnamed-Swatch)!important;
+}
+.readnum{
+	font-size:19px;
+	color:var(--swatch-var-Unnamed-Swatch-copy-3)!important;
+	font-family:"DBHelvethaicaX-Med";
+}
+.fit13{
+	padding-left:14px;
+	padding-right:2px;
+}
+.textred{
+	font-size:28px;
+	font-family:"DBHelvethaicaX-Med";
+	color:var(--swatch-var-Unnamed-Swatch-copy-17)!important;
+}
+.textgreen{
+	font-family:"DBHelvethaicaX-Med";
+	font-size:33px;
+	color:var(--swatch-var-Unnamed-Swatch-copy-1)!important;
+}
+.img-statu-style{
+	width:125px;
+}
+
+/* = Colour
+-------------------------------------------------------------- */
+
+/* Swatch Variables */
+:root{
+	
+	--swatch-var-Unnamed-Swatch:rgba(255,255,255,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-1:rgba(0,153,0,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-2:#C5AE7A;
+	
+	--swatch-var-Unnamed-Swatch-copy-3:rgba(215,35,40,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-4:rgba(92,221,230,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-5:#F1E88C;
+	
+	--swatch-var-Unnamed-Swatch-copy-6:#F06F23;
+	
+	--swatch-var-Unnamed-Swatch-copy-7:#676767;
+	
+	--swatch-var-Unnamed-Swatch-copy-8:#212121;
+	
+	--swatch-var-Unnamed-Swatch-copy-9:rgba(0,0,0,0.2);
+	
+	--swatch-var-Unnamed-Swatch-copy-10:rgba(241,233,140,0.26);
+	
+	--swatch-var-Unnamed-Swatch-copy-11:rgba(241,233,140,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-12:rgba(79,143,0,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-13:rgba(87,161,191,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-14:rgba(81,115,179,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-15:rgba(0,0,0,0.701961);
+	
+	--swatch-var-Unnamed-Swatch-Copy:#F4F4F4;
+	
+	--swatch-var-7048:#797979;
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-1:rgba(241,233,140,0.42);
+	
+	--swatch-var-7639:#797979;
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-2:#EAEAEA;
+	
+	--swatch-var-Unnamed-Swatch-copy-16:#1E3531;
+	
+	--swatch-var-Unnamed-Swatch-copy-17:rgba(214,34,39,1.00);
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-3:#EEFFFB;
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-4:rgba(242,253,235,1.00);
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy:#FFF6ED;
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy-copy-1:rgba(245,245,245,1.00);
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-5:#E13933;
+	
+	--swatch-var-Unnamed-Swatch-copy-18:#FEFFFF;
+	
+	--swatch-var-Unnamed-Swatch-copy-19:#E13933;
+	
+	--swatch-var-Unnamed-Swatch-copy-20:rgba(0,0,0,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-21:rgba(91,220,230,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-22:rgba(80,114,178,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-23:#24772E;
+	
+	--swatch-var-5196:rgba(255,255,255,1.0);
+	
+	--swatch-var-Unnamed-Swatch-copy-24:#EAEAEA;
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-6:rgba(81,115,179,0.07);
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-7:#784201;
+	
+	--swatch-var-Unnamed-Swatch-copy-25:rgba(241,232,140,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-26:#F06F23;
+	
+	--swatch-var-Unnamed-Swatch-Copy-copy-8:#DC8D5C;
+	
+	--swatch-var-1974:#521B92;
+	
+	--swatch-var-Unnamed-Swatch-copy-27:#D72227;
+	
+	--swatch-var-Unnamed-Swatch-copy-28:#521B92;
+	
+	--swatch-var-Unnamed-Swatch-copy-29:#D72328;
+	
+	--swatch-var-Unnamed-Swatch-copy-30:#784201;
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy-copy-2:#944C20;
+	
+	--swatch-var-Unnamed-Swatch-copy-31:rgba(44,70,86,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-32:#C3C190;
+	
+	--swatch-var-Unnamed-Swatch-copy-33:#C3C08F;
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy-copy-3:rgba(245,245,245,1.00);
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy-copy-4:rgba(245,245,245,1.00);
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy-copy-5:rgba(245,245,245,1.00);
+	
+	--swatch-var-Unnamed-Swatch-Copy-Copy-copy-6:rgba(245,245,245,1.00);
+	
+	--swatch-var-Unnamed-Swatch-copy-34:#FFFFFF;
+	
+	--swatch-var-Unnamed-Swatch-copy-35:#5072B2;
+	
+	--swatch-var-Unnamed-Swatch-copy-36:#57A1BF;
+	
+	--swatch-var-Unnamed-Swatch-copy-37:#D62227;
+	
+	--swatch-var-Unnamed-Swatch-copy-38:#000000;
+	
+	--swatch-var-Unnamed-Swatch-copy-39:#009900;
+	
+}
+
+
+/* Background colour styles */
+
+.bgc-7211{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-3);
+}
+.bgc-6083{
+	background-color:var(--swatch-var-Unnamed-Swatch-Copy-Copy-copy-2);
+}
+.bgc-6869{
+	background-color:var(--swatch-var-Unnamed-Swatch-Copy-Copy-copy-1);
+}
+.bgc-1953{
+	background-color:var(--swatch-var-Unnamed-Swatch-Copy-copy-6);
+}
+.bgc-4302{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-14);
+}
+.bgc-2396{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-5);
+}
+.bgc-5783{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-9);
+}
+.bgc-2771{
+	background-color:var(--swatch-var-Unnamed-Swatch);
+}
+.bgc-1974{
+	background-color:var(--swatch-var-1974);
+}
+.bgc-6095{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-13);
+}
+.bgc-4032{
+	background-color:var(--swatch-var-Unnamed-Swatch-copy-19);
+}
+.bgc-4419{
+	background-color:var(--swatch-var-Unnamed-Swatch-Copy-copy-2);
+}
+
+/* Text colour styles */
+
+.tc-7996{
+	color:var(--swatch-var-Unnamed-Swatch-copy-8)!important;
+}
+.tc-7211{
+	color:var(--swatch-var-Unnamed-Swatch-copy-3)!important;
+}
+.tc-7289{
+	color:var(--swatch-var-Unnamed-Swatch-Copy-copy-5)!important;
+}
+.tc-2771{
+	color:var(--swatch-var-Unnamed-Swatch)!important;
+}
+.tc-2396{
+	color:var(--swatch-var-Unnamed-Swatch-copy-5)!important;
+}
+.tc-4730{
+	color:var(--swatch-var-Unnamed-Swatch-copy-17)!important;
+}
+.tc-4302{
+	color:var(--swatch-var-Unnamed-Swatch-copy-14)!important;
+}
+.tc-2768{
+	color:var(--swatch-var-Unnamed-Swatch-copy-32)!important;
+}
+.tc-4864{
+	color:var(--swatch-var-Unnamed-Swatch-copy-20)!important;
+}
+.tc-4645{
+	color:var(--swatch-var-Unnamed-Swatch-copy-18)!important;
+}
+.tc-6412{
+	color:var(--swatch-var-Unnamed-Swatch-copy-11)!important;
+}
+
+/* Icon colour styles */
+
+.icon-5655{
+	color:var(--swatch-var-Unnamed-Swatch-copy-4)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-4)!important;
+}
+.icon-2771{
+	color:var(--swatch-var-Unnamed-Swatch)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch)!important;
+}
+.icon-7927{
+	color:var(--swatch-var-Unnamed-Swatch-copy-25)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-25)!important;
+}
+.icon-6412{
+	color:var(--swatch-var-Unnamed-Swatch-copy-11)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-11)!important;
+}
+.icon-4302{
+	color:var(--swatch-var-Unnamed-Swatch-copy-14)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-14)!important;
+}
+.icon-2224{
+	color:var(--swatch-var-Unnamed-Swatch-copy-29)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-29)!important;
+}
+.icon-3530{
+	color:var(--swatch-var-Unnamed-Swatch-copy-1)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-1)!important;
+}
+.icon-4645{
+	color:var(--swatch-var-Unnamed-Swatch-copy-18)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-18)!important;
+}
+.icon-7211{
+	color:var(--swatch-var-Unnamed-Swatch-copy-3)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-3)!important;
+}
+.icon-7289{
+	color:var(--swatch-var-Unnamed-Swatch-Copy-copy-5)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-Copy-copy-5)!important;
+}
+.icon-1974{
+	color:var(--swatch-var-1974)!important;
+	border-color:var(--swatch-var-1974)!important;
+}
+.icon-4730{
+	color:var(--swatch-var-Unnamed-Swatch-copy-17)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-17)!important;
+}
+.icon-4032{
+	color:var(--swatch-var-Unnamed-Swatch-copy-19)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-19)!important;
+}
+.icon-2810{
+	color:var(--swatch-var-Unnamed-Swatch-Copy-copy-7)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-Copy-copy-7)!important;
+}
+.icon-5156{
+	color:var(--swatch-var-Unnamed-Swatch-copy-39)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-39)!important;
+}
+.icon-723{
+	color:var(--swatch-var-Unnamed-Swatch-copy-37)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-37)!important;
+}
+.icon-6095{
+	color:var(--swatch-var-Unnamed-Swatch-copy-13)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-13)!important;
+}
+.icon-6847{
+	color:var(--swatch-var-Unnamed-Swatch-copy-7)!important;
+	border-color:var(--swatch-var-Unnamed-Swatch-copy-7)!important;
+}
+
+/* Bloc image backgrounds */
+
+.bg-Yellow2{
+	background-image:url("img/Yellow2.png");
+	background-image: -webkit-image-set(url("img/Yellow2.webp") 1x,
+url("img/Yellow2.webp") 2x);background-image: image-set(url("img/Yellow2.png") 1x,
+url("img/Yellow2.png") 2x,url("img/Yellow2.webp") 1x,
+url("img/Yellow2.webp") 2x);
+}
+.bg-Yellow23{
+	background-image:url("img/Yellow23.png");
+	background-image: -webkit-image-set(url("img/Yellow23.webp") 1x,
+url("img/Yellow23.webp") 2x);background-image: image-set(url("img/Yellow23.png") 1x,
+url("img/Yellow23.png") 2x,url("img/Yellow23.webp") 1x,
+url("img/Yellow23.webp") 2x);
+}
+.bg-cover-20news{
+	background-image:url("img/cover%20news.png");
+	background-image: -webkit-image-set(url("img/cover%20news.webp") 1x,
+url("img/cover%20news.webp") 2x);background-image: image-set(url("img/cover%20news.png") 1x,
+url("img/cover%20news.png") 2x,url("img/cover%20news.webp") 1x,
+url("img/cover%20news.webp") 2x);
+}
+.bg-cover-20gooddeeds{
+	background-image:url("img/cover%20gooddeeds.png");
+	background-image: -webkit-image-set(url("img/cover%20gooddeeds.webp") 1x,
+url("img/cover%20gooddeeds.webp") 2x);background-image: image-set(url("img/cover%20gooddeeds.png") 1x,
+url("img/cover%20gooddeeds.png") 2x,url("img/cover%20gooddeeds.webp") 1x,
+url("img/cover%20gooddeeds.webp") 2x);
+}
+.bg-cover-20news{
+	background-image:url("img/cover%20news.png");
+	background-image: -webkit-image-set(url("img/cover%20news.webp") 1x,
+url("img/cover%20news.webp") 2x);background-image: image-set(url("img/cover%20news.png") 1x,
+url("img/cover%20news.png") 2x,url("img/cover%20news.webp") 1x,
+url("img/cover%20news.webp") 2x);
+}
+.bg-22333ห{
+	background-image:url("img/22333%E0%B8%AB.png");
+}
+.bg-donate{
+	background-image:url("img/donate.jpeg");
+	background-image: -webkit-image-set(url("img/donate.webp") 1x,
+url("img/donate.webp") 2x);background-image: image-set(url("img/donate.jpeg") 1x,
+url("img/donate.jpeg") 2x,url("img/donate.webp") 1x,
+url("img/donate.webp") 2x);
+}
+.bg-wallpaper-2023{
+	background-image:url("img/wallpaper%2023-1.jpg");
+}
+.bg-wallpaper-2023{
+	background-image:url("img/wallpaper%2023-1.jpg");
+}
+.bg-wallpaper-2023{
+	background-image:url("img/wallpaper%2023-1.jpg");
+}
+.bg-cover-20news{
+	background-image:url("img/cover%20news.png");
+	background-image: -webkit-image-set(url("img/cover%20news.webp") 1x,
+url("img/cover%20news.webp") 2x);background-image: image-set(url("img/cover%20news.png") 1x,
+url("img/cover%20news.png") 2x,url("img/cover%20news.webp") 1x,
+url("img/cover%20news.webp") 2x);
+}
+.bg-Gooddeeds1rg{
+	background-image:url("img/Gooddeeds1rg.jpg");
+	background-image: -webkit-image-set(url("img/Gooddeeds1rg.webp") 1x,
+url("img/Gooddeeds1rg.webp") 2x);background-image: image-set(url("img/Gooddeeds1rg.jpg") 1x,
+url("img/Gooddeeds1rg.jpg") 2x,url("img/Gooddeeds1rg.webp") 1x,
+url("img/Gooddeeds1rg.webp") 2x);
+}
+
+/* = Custom Bric Data
+-------------------------------------------------------------- */
+
+.img-hover-tilt-container{
+	position:relative;
+	transform-style: preserve-3d;
+}
+.hover-tilt-label{
+	position:absolute;
+	top: 50%;
+	transform: translateY(-50%) translateZ(20px);
+	width:100%;
+	 text-align:center;
+	font-size:40px;
+}
+.hover-tilt-light-text{
+	color:rgba(255,255,255,.8);
+}
+/* WP Widget Styling */.widget-zone ul{
+	list-style: none;
+	padding: 0;
+}
+
+
+/* = Bloc Padding Multi Breakpoint
+-------------------------------------------------------------- */
+
+@media (min-width: 576px) {
+    .bloc-xxl-sm{padding:200px 20px;}
+    .bloc-xl-sm{padding:150px 20px;}
+    .bloc-lg-sm{padding:100px 20px;}
+    .bloc-md-sm{padding:50px 20px;}
+    .bloc-sm-sm{padding:20px;}
+    .bloc-no-padding-sm{padding:0 20px;}
+}
+@media (min-width: 768px) {
+    .bloc-xxl-md{padding:200px 20px;}
+    .bloc-xl-md{padding:150px 20px;}
+    .bloc-lg-md{padding:100px 20px;}
+    .bloc-md-md{padding:50px 20px;}
+    .bloc-sm-md{padding:20px 20px;}
+    .bloc-no-padding-md{padding:0 20px;}
+}
+@media (min-width: 992px) {
+    .bloc-xxl-lg{padding:200px 20px;}
+    .bloc-xl-lg{padding:150px 20px;}
+    .bloc-lg-lg{padding:100px 20px;}
+    .bloc-md-lg{padding:50px 20px;}
+    .bloc-sm-lg{padding:20px;}
+    .bloc-no-padding-lg{padding:0 20px;}
+}
+
+
+/* = Mobile adjustments 
+-------------------------------------------------------------- */
+@media (max-width: 1024px)
+{
+    .bloc.full-width-bloc, .bloc-tile-2.full-width-bloc .container, .bloc-tile-3.full-width-bloc .container, .bloc-tile-4.full-width-bloc .container{
+        padding-left: 0; 
+        padding-right: 0;  
+    }
+}
+@media (max-width: 991px)
+{
+    .container{width:100%;}
+    .bloc{padding-left: constant(safe-area-inset-left);padding-right: constant(safe-area-inset-right);} /* iPhone X Notch Support*/
+    .bloc-group, .bloc-group .bloc{display:block;width:100%;}
+}
+@media (max-width: 767px)
+{
+    .bloc-tile-2 .container, .bloc-tile-3 .container, .bloc-tile-4 .container{
+        padding-left:0;padding-right:0;
+    }
+    .btn-dwn{
+       display:none; 
+    }
+    .voffset{
+        margin-top:5px;
+    }
+    .voffset-md{
+        margin-top:20px;
+    }
+    .voffset-lg{
+        margin-top:30px;
+    }
+    form{
+        padding:5px;
+    }
+    .close-lightbox{
+        display:inline-block;
+    }
+    .blocsapp-device-iphone5{
+	   background-size: 216px 425px;
+	   padding-top:60px;
+	   width:216px;
+	   height:425px;
+    }
+    .blocsapp-device-iphone5 img{
+	   width: 180px;
+	   height: 320px;
+    }
+}
+
+@media (max-width: 991px){
+	.h1-3-style{
+		font-size:22px;
+		width:100%;
+	}
+	.h1-27-style{
+		font-size:22px;
+		line-height:24px;
+	}
+	.cardx333{
+		padding:22px 22px 22px 22px;
+	}
+	.hero-subheader{
+		font-size:30px;
+	}
+	.mt-md-0{
+	}
+	.mt-md-4{
+	}
+	.text-span-bloc-5-color{
+		color:#ffffff;
+	}
+	.h3- วิธีการใช้งาน-style{
+		font-size:22px;
+	}
+	.h3-10-style{
+		font-size:22px;
+	}
+	.h3-11-style{
+		font-size:22px;
+	}
+	.h3-12-style{
+		font-size:22px;
+	}
+	.field-style{
+		width:100%;
+		height:39px;
+		font-size:21px;
+	}
+	.img-38-style{
+		width:323px;
+	}
+	.img-43-gooddess-333-style{
+		width:101px;
+	}
+	.ccsxx{
+		bottom:11px;
+	}
+	.p-30-style{
+		font-size:18px;
+	}
+	.h2-9-style{
+		font-family:"DBRamintraX-Bold";
+		font-size:33px;
+	}
+	.btn-padding{
+		font-size:18px;
+		width:63.82%;
+		border-radius:19px 19px 19px 19px;
+	}
+	.btn-donate-style{
+		width:75.12%;
+		padding-top:8px;
+		padding-bottom:8px;
+		font-size:14px;
+	}
+	.p-bloc-21-style{
+		font-size:18px;
+	}
+	.img-sec3-style{
+		width:344px;
+	}
+	.p-bloc-3-style{
+		font-family:"DBPenThaiX";
+		font-size:20px;
+		line-height:22px;
+		width:96.51%;
+	}
+	.btn-6-style{
+		width:100%;
+	}
+	.cardxx{
+	}
+	.cardxxxxxx{
+		padding-right:9px;
+		padding-left:9px;
+	}
+	.divider-bloc-24-padding{
+		padding-top:0px;
+		padding-bottom:0px;
+	}
+	.divider-0-padding{
+		padding-top:0px;
+		padding-bottom:0px;
+	}
+	.img-37-style{
+		width:378px;
+	}
+	.text33{
+		color:#C63531!important;
+		font-family:"DBHelvethaicaX-Med";
+		font-size:33px;
+	}
+	.card44{
+		font-family:"DBRamintraX-Bold";
+	}
+	.h2-บริจาคความดี-style{
+		font-family:"DBHelvethaicaX-Med";
+		font-size:69px;
+	}
+	.p-bloc-7-style{
+		font-size:27px;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.wodx{
+		font-family:"SukhumvitSet-Text";
+		font-size:18px;
+	}
+	.img-43-style{
+		width:46px;
+	}
+	.img-goodded-style{
+		width:319px;
+	}
+	.h4-หน้าแรก-style{
+		font-size:12px;
+	}
+	.textcc{
+		font-size:21px;
+	}
+	.p-style{
+		font-family:"DBHelvethaicaX-Li";
+		font-size:25px;
+		line-height:29px;
+		color:#000000!important;
+	}
+	.p-15-style{
+	}
+	.img-มีชั-style{
+		width:381px;
+	}
+	.navbar-nav li a{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:22px;
+	}
+	.cardadmin2{
+		border-color:#E63D20!important;
+	}
+	.bloc-bloc-23-style{
+		padding:12px 12px 12px 12px;
+	}
+	.h1-style{
+		color:#4E79BB!important;
+	}
+	.h1-สมัครสมาชิก-style{
+		font-size:16px;
+		width:60.15%;
+	}
+	.h3-style{
+		font-size:px;
+	}
+	.cardfit{
+		padding-left:3px;
+		padding-right:3px;
+		font-family:"DBHelvethaicaX-Med";
+		font-size:20px;
+		color:#FF2600!important;
+	}
+	.container-div-bloc-29-style{
+		width:100%;
+	}
+	.cardu{
+		padding:12px 12px 12px 12px;
+	}
+	.h4-color{
+		font-size:18px;
+		font-family:"SukhumvitSet-Medium";
+		color:#2C4555!important;
+	}
+	.h4-bloc-4-style{
+		width:100%;
+		font-family:"SukhumvitSet-Text";
+		color:#2C4555!important;
+		font-size:12px;
+	}
+	.btn-style{
+		width:100%;
+	}
+	.btn-style:hover{
+		background-color:#212121;
+		color:#AE9760!important;
+	}
+	.btn-style:active{
+	}
+	.cardcon{
+		align-items:stretch;
+	}
+	.card1{
+		padding:0px 0px 0px 0px;
+	}
+	.cardfit666{
+		padding:0px 0px 0px 0px;
+	}
+	.cardheader{
+		margin-bottom:0px;
+		padding:0px 22px 0px 22px;
+	}
+	.card2{
+		background-color:#FEFFFF;
+		padding:0px 0px 0px 0px;
+	}
+	.card12x3{
+		margin-top:22px;
+		padding-top:0px;
+	}
+	.cardtrash2{
+		margin-top:33px;
+	}
+	.img-new-pro-style{
+		width:58px;
+	}
+	.img-calend-style{
+		width:58px;
+	}
+	.img-accou-style{
+		width:58px;
+	}
+	.fit2{
+		padding:14px 14px 14px 14px;
+	}
+	.cardblog{
+		padding:10px 10px 10px 10px;
+	}
+	.cardtrash8{
+		border-radius:12px 12px 12px 12px;
+	}
+	.h2-20-style{
+		font-size:18px;
+		margin-top:12px;
+		line-height:19px;
+	}
+	.p-bloc-1-style{
+		width:94.41%;
+		font-size:19px;
+		line-height:21px;
+	}
+	.h3-bloc-36-style{
+		font-size:19px;
+	}
+	.h2-sign-up-style{
+		font-size:22px;
+		width:100%;
+	}
+	.h2-จำนวนรายการ-style{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:15px;
+	}
+	.nnfint{
+		padding:2px 2px 2px 2px;
+	}
+	.h2-ab124566432-style{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:16px;
+	}
+	.card-body-12-style{
+		width:57%;
+	}
+	.p-8-bloc-1-style{
+		width:100%;
+		color:#A9A9A9!important;
+		font-size:18px;
+	}
+	.p-11-style{
+		font-size:22px;
+	}
+	.btn-1-style{
+		padding:10px 10px 10px 10px;
+	}
+	.card124{
+		margin-right:20px;
+	}
+	.card33{
+		margin-bottom:33px;
+	}
+	.card-body-bloc-1-style{
+		height:118px;
+	}
+	.img-camera-style{
+		margin:22px 22px 22px 22px;
+	}
+	.p-22-style{
+		width:97.06%;
+	}
+	.text{
+		font-family:"DBHelvethaicaX-Li";
+		font-size:20px;
+		color:#000000!important;
+	}
+	.bloc-bloc-1-style:hover{
+	}
+	.link-style{
+		width:100%;
+		font-family:"Kanit-Light";
+		font-size:14px;
+		text-align:center;
+		color:#797979!important;
+	}
+	.img-31-style{
+		width:418px;
+	}
+	.cardbbb{
+		margin-bottom:12px;
+	}
+	.btn-10-00-12-00-น--style{
+		font-size:13px;
+	}
+	.btn-button-style{
+		padding-top:4px;
+		padding-bottom:4px;
+		font-size:19px;
+	}
+	.btn-16-00-18-00-น--style{
+		padding-top:14px;
+		padding-bottom:14px;
+		font-size:13px;
+	}
+	.btn-check-out-style{
+		width:100%;
+		font-family:"DBHelvethaicaX-Med";
+		background-color:transparent;
+		color:#D71E27!important;
+		text-align:center;
+		font-size:18px;
+		border-radius:7px 7px 7px 7px;
+	}
+	.btn-check-out-style:hover{
+		color:#00894D!important;
+	}
+	.btn-11-style{
+		width:100%;
+	}
+	.btn-11-style:hover{
+		background-color:#A9A9A9;
+	}
+	.h2-trash-now-style{
+		font-size:18px;
+		width:77.87%;
+	}
+	.fit12{
+		padding-right:12px;
+		padding-bottom:25px;
+		padding-left:12px;
+		background-color:#FEFFFF;
+	}
+	.cardfith2{
+		padding:12px 9px 9px 22px;
+	}
+	.fit4{
+		padding:0px 0px 0px 0px;
+	}
+	.cardfitt{
+		padding:0px 0px 0px 0px;
+	}
+	.img-26-style{
+		width:30px;
+	}
+	.cardfit333{
+		border-radius:12px 12px 12px 12px;
+	}
+	.p-35-style{
+		font-size:22px;
+	}
+	label{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:20px;
+	}
+	.h1-เข้าสู่ระบบ-style{
+		width:100%;
+		font-size:21px;
+	}
+	.p-36-style{
+		font-size:18px;
+	}
+	.h2-8-style{
+		color:#5E5E5E!important;
+	}
+	.img-90-style{
+		width:100%;
+	}
+	.h3- -รายชื่อ-style{
+		font-size:19px;
+	}
+	.text55{
+		font-size:12px;
+	}
+	.container-div-0-style{
+		width:100%;
+	}
+	.img-2417835-style{
+		width:29px;
+	}
+	.btn-แก้ไข-style{
+		width:100%;
+		border-style:none;
+		padding-top:4px;
+		padding-bottom:4px;
+		margin-bottom:22px;
+	}
+	.p-307-style{
+		line-height:25px;
+	}
+	.h2-style{
+		line-height:22px;
+		font-size:22px;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.container-div-bloc-36-style{
+		width:100%;
+	}
+	.h2-19-style{
+		width:100%;
+		font-size:21px;
+	}
+	.rowx{
+		padding-top:22px;
+		padding-bottom:22px;
+	}
+	.p-bloc-36-style{
+		font-family:"DBHelvethaicaX-Med";
+		font-size:20px;
+		color:#FF2600!important;
+	}
+	.textsmall{
+	}
+	.link3{
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.radio-style{
+		width:31.66%;
+	}
+	.row3{
+		background-color:#935100;
+	}
+	.cardtec{
+		padding:0px 0px 0px 0px;
+	}
+	.h2-5-style{
+	}
+	.h2-6-style{
+	}
+	.cardhome{
+		padding:22px 22px 22px 22px;
+	}
+	.btn-2-style{
+		color:#D71E27!important;
+		background-color:#FEFFFF;
+		line-height:17px;
+		font-size:18px;
+	}
+	.container-div-bloc-3-style{
+		height:33px;
+	}
+	.container-div-0-bloc-3-style{
+		width:100%;
+	}
+	.h1-bloc-3-style{
+		opacity:1;
+		width:100%;
+		border-radius:99px 99px 99px 99px;
+	}
+	.card12{
+	}
+	.fitwhite{
+	}
+	.p-bloc-43-style{
+		color:#212121!important;
+	}
+	.row14x{
+		padding:6px 6px 6px 6px;
+	}
+	.btn-ตกลง-style{
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.img-style{
+		width:193px;
+	}
+	.card13x{
+		margin-bottom:8px;
+	}
+	.card13{
+		margin-top:22px;
+	}
+	.p-18-style{
+		font-size:16px;
+	}
+	.cardnewpro{
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.img-placeholder-us-style{
+		width:47px;
+	}
+	.btn-69-style{
+		width:100%;
+		background-color:var(--swatch-var-Unnamed-Swatch-copy-4);
+		color:var(--swatch-var-Unnamed-Swatch-copy-20)!important;
+		font-size:22px;
+		border-radius:26px 26px 26px 26px;
+	}
+	.btn-68-style{
+		width:100%;
+	}
+	.field-bloc-1-style{
+		width:100%;
+		height:40px;
+	}
+	.container-div-bloc-35-style{
+		height:36px;
+	}
+	.cardfit1{
+	}
+	.cardfit3{
+	}
+	.fit13{
+		padding-left:3px;
+	}
+	.p-bloc-49-style{
+	}
+	
+	/* MD Text Margin Offsets */
+	.mg-sm-md{
+		margin-top:10px;
+		margin-bottom:5px;
+	}
+		.mg-md-md{
+		margin-top:10px;
+		margin-bottom:20px;
+	}
+		.mg-lg-md{
+		margin-top: 10px;
+		margin-bottom:40px;
+	}
+		.mg-clear-md{
+		margin:0;
+	}
+	
+}
+
+@media (max-width: 767px){
+	.text-right{
+	}
+	.text-left{
+	}
+	.text-center{
+	}
+	.h1-27-style{
+		font-size:24px;
+	}
+	.hero-subheader{
+		font-size:22px;
+	}
+	.h2-news-style{
+		font-size:44px;
+	}
+	.cardxx{
+		margin:11px 11px 11px 11px;
+		padding:14px 14px 14px 14px;
+		border-radius:37px 37px 37px 37px;
+		border-width:2px 2px 2px 2px;
+	}
+	.textxxx{
+		font-family:"DBRamintraX-Bold";
+		font-size:33px;
+		color:#FDFDFD!important;
+	}
+	.img-38-style{
+		width:304px;
+	}
+	.p-30-style{
+		font-size:22px;
+		font-family:"SukhumvitSet-SemiBold";
+		color:#000000!important;
+	}
+	.row-32-style{
+		width:100%;
+		margin:3px 3px 3px 3px;
+	}
+	.h4-เกี่ยวกับเรา-style{
+		font-size:22px;
+		font-family:"DBRamintraX-Bold";
+	}
+	.h4xx{
+	}
+	.h4-14-style{
+		font-size:15px;
+	}
+	.h4-หน้าแรก-style{
+		font-size:15px;
+	}
+	.btn-donate-style{
+		width:83.6%;
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.h2-9-style{
+		font-size:33px;
+	}
+	.btn-button-style{
+		width:100%;
+	}
+	.img-sec3-style{
+		width:395px;
+	}
+	.p-bloc-3-style{
+		font-size:23px;
+		line-height:24px;
+		width:100%;
+	}
+	.field-style{
+		width:100%;
+		height:42px;
+		font-size:21px;
+	}
+	.container-div-style{
+		width:100%;
+	}
+	.p-16342-style{
+		font-size:10px;
+	}
+	.h3-ชัยพัฒนา-style{
+		font-size:12px;
+	}
+	.card88{
+		padding:3px 13px 1px 3px;
+	}
+	.cardxx123{
+		padding:1px 1px 1px 1px;
+	}
+	.container-div-0-bloc-24-style{
+		height:22px;
+	}
+	.btn-6-style{
+		font-size:7px;
+		width:29.62%;
+	}
+	.img-rati-style{
+		width:102px;
+	}
+	.text33{
+		font-size:25px;
+	}
+	.h2-บริจาคความดี-style{
+		font-family:"DBHelvethaicaX-Med";
+		font-size:79px;
+		color:#FEFFFF!important;
+	}
+	.btn-เพิ่มเติม-style{
+		width:35.8%;
+	}
+	.textcc{
+		font-size:21px;
+	}
+	.img-มีชั-style{
+		width:372px;
+	}
+	.img-43-style{
+		width:40px;
+	}
+	.img-43-gooddess-333-style{
+		width:92px;
+	}
+	.img-bloc-6-style{
+		width:46px;
+	}
+	.field-bloc-6-style{
+		height:42px;
+	}
+	.h2-1-style{
+		font-size:33px;
+	}
+	.p-bloc-7-style{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:27px;
+	}
+	.bloc-bloc-23-style{
+		padding:12px 12px 12px 12px;
+	}
+	.h1-สถานะของเรา-style{
+		font-size:22px;
+	}
+	.h1-สมัครสมาชิก-style{
+		width:60.17%;
+	}
+	.h3-style{
+		font-size:px;
+	}
+	.btn-log-in-style{
+		width:52.5%;
+		padding-top:8px;
+		padding-bottom:8px;
+	}
+	.factory-button{
+		background:linear-gradient(90deg, #2C4555 0%, #C3C08F 99%);
+	}
+	.btn-style{
+		width:100%;
+	}
+	.cardcon{
+		background-color:#D62226;
+	}
+	.cardheader{
+		padding-left:12px;
+		margin-bottom:0px;
+	}
+	.card2{
+		padding:0px 0px 0px 0px;
+	}
+	.fit2{
+		padding:12px 12px 12px 12px;
+	}
+	.cardblog{
+		padding:7px 7px 7px 7px;
+	}
+	.cardtrash8{
+		border-style:solid;
+		border-color:#C0C0C0!important;
+		padding:0px 0px 0px 0px;
+		border-radius:0px 0px 12px 12px;
+		border-width:1px 1px 1px 1px;
+	}
+	.row45{
+		padding:4px 4px 4px 4px;
+	}
+	.h2-20-style{
+		font-family:"DBHelvethaicaX-Reg";
+		width:84.29%;
+		color:#000000!important;
+		font-size:18px;
+		text-align:center;
+		margin-top:12px;
+		line-height:19px;
+	}
+	.p-bloc-1-style{
+		width:97.48%;
+		color:#212121!important;
+		font-size:18px;
+		line-height:21px;
+	}
+	.readmore{
+		color:#D62226!important;
+		font-size:17px;
+	}
+	.h1-เข้าสู่ระบบ-style{
+		font-size:21px;
+		width:100%;
+	}
+	.h2-sign-up-style{
+		font-size:22px;
+		width:100%;
+	}
+	.qq{
+	}
+	.h2-จำนวนรายการ-style{
+		width:100%;
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:15px;
+	}
+	.nnfint{
+		padding-left:2px;
+	}
+	.h2-ab124566432-style{
+		width:100%;
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:16px;
+		color:#D62226!important;
+	}
+	.card10x{
+		margin-left:0px;
+		margin-right:0px;
+	}
+	.card-body-12-style{
+		width:69%;
+	}
+	.p-7-bloc-1-style{
+		width:100%;
+	}
+	.p-11-style{
+		font-size:21px;
+		width:100%;
+		line-height:21px;
+	}
+	.bloc-0-bloc-1-style{
+		height:41px;
+	}
+	.btn-1-style{
+		padding-top:8px;
+		padding-bottom:6px;
+		height:42px;
+	}
+	.card124{
+		margin-right:21px;
+	}
+	.cardfit777{
+		padding:0px 0px 0px 0px;
+	}
+	.card33{
+		margin-bottom:33px;
+	}
+	.card-body-bloc-1-style{
+		height:103px;
+	}
+	.card-body-18-style{
+		width:62.96%;
+	}
+	.p-7-style{
+		font-family:"DBHelvethaicaX-Med";
+	}
+	.text{
+		font-family:"DBHelvethaicaX-Li";
+		color:#000000!important;
+		font-size:20px;
+	}
+	.p-8-style{
+		font-family:"DBHelvethaicaX-Med";
+	}
+	.img-31-style{
+		width:292px;
+	}
+	.cardbbb{
+		margin-bottom:12px;
+	}
+	.btn-check-out-style{
+		width:100%;
+	}
+	.btn-check-out-style:hover{
+		color:#00894D!important;
+	}
+	.btn-11-style{
+		font-size:19px;
+		border-radius:9px 9px 9px 9px;
+	}
+	.h2-trash-now-style{
+		font-size:18px;
+		width:96.51%;
+	}
+	.row1{
+		padding-bottom:0px;
+	}
+	.fit12{
+		padding:7px 4px 7px 4px;
+	}
+	.h2-7-style{
+		font-size:19px;
+	}
+	.card2333{
+		box-shadow:0px 0px 11px #EAEAEA;
+	}
+	.h2-8-style{
+		font-size:19px;
+		color:#5E5E5E!important;
+	}
+	.field-bloc-1-style{
+		font-size:16px;
+		color:#797979!important;
+		height:41px;
+		background-color:#FEFFFF;
+		top:9px;
+		width:100%;
+		border-color:#D5D5D5!important;
+	}
+	.fitxx{
+		padding:0px 0px 0px 0px;
+	}
+	.h2-menu-style{
+		font-size:20px;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.cardfitt{
+		padding:0px 0px 0px 0px;
+	}
+	.h2-เมนู-style{
+		font-size:12px;
+	}
+	.row5px{
+		padding-left:12px;
+		padding-right:12px;
+	}
+	.fixx3{
+		margin-top:16px;
+	}
+	.cardfit333{
+		border-radius:12px 12px 12px 12px;
+		padding-left:22px;
+	}
+	.p-35-style{
+		font-size:18px;
+		line-height:20px;
+	}
+	.p-36-style{
+		font-size:18px;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.p-8-bloc-1-style{
+		color:#A9A9A9!important;
+	}
+	label{
+		font-size:15px;
+	}
+	.h3-bloc-36-style{
+		font-size:19px;
+	}
+	.fit7{
+		padding:2px 2px 2px 2px;
+	}
+	.card-body-bloc-37-style{
+		width:75%;
+	}
+	.h2-19-style{
+		width:100%;
+		font-size:21px;
+		color:#D62226!important;
+		font-family:"DBHelvethaicaX-Med";
+		line-height:25px;
+	}
+	.cardfith2{
+		padding-left:26px;
+	}
+	.field-bloc-1-style:active{
+	}
+	.field-bloc-1-style:hover{
+	}
+	.h2-30-style{
+		font-size:19px;
+	}
+	.img-2417835-style{
+		width:27px;
+	}
+	.cardfit{
+		font-size:19px;
+	}
+	.cardfit3{
+	}
+	.p-bloc-49-style{
+		font-size:17px;
+	}
+	.h2-edit-style{
+		font-size:18px;
+		font-family:"DBHelvethaicaX-Med";
+	}
+	.rowx{
+		background:linear-gradient(91deg, #D62226    0%, #FF9F00 100%);
+		padding-top:22px;
+		padding-bottom:22px;
+	}
+	.container-div-bloc-36-style{
+		padding-left:4px;
+		padding-right:4px;
+	}
+	.h2-style{
+		font-size:26px;
+		line-height:28px;
+	}
+	.p-style{
+		font-family:"DBHelvethaicaX-Li";
+		font-size:24px;
+	}
+	.cardfit7{
+		margin-top:33px;
+		margin-bottom:33px;
+	}
+	.cardty32{
+		border-radius:44px 44px 44px 44px;
+	}
+	.text-span-bloc-36-color{
+		font-family:"DBHelvethaicaX-Med";
+	}
+	.p-bloc-36-style{
+		width:100%;
+		font-family:"DBHelvethaicaX-Med";
+		color:#FF2600!important;
+		font-size:20px;
+	}
+	.btn-ยืนยัน-style{
+		font-size:19px;
+		border-radius:10px 10px 10px 10px;
+	}
+	.row2{
+		background-color:#935100;
+	}
+	.img-90-style{
+		width:49px;
+	}
+	.img-new-pro-style{
+		width:49px;
+	}
+	.cardfit44{
+	}
+	.cardfti2{
+	}
+	.cardfit1{
+		padding:5px 5px 5px 5px;
+	}
+	.radio-bloc-53-style{
+		width:17.72%;
+	}
+	.radio-style{
+		width:38.71%;
+		font-size:22px;
+	}
+	.btn-34-style{
+		padding-left:2px;
+		padding-right:2px;
+		width:100%;
+	}
+	.btn-35-style{
+		padding-left:2px;
+		padding-right:2px;
+		border-radius:13px 13px 13px 13px;
+	}
+	.btn-2-style{
+		width:81.93%;
+		padding:7px 3px 7px 3px;
+	}
+	.cardsdgim{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.h3-bloc-3-style{
+		font-size:18px;
+	}
+	.container-div-0-bloc-3-style{
+		height:37px;
+	}
+	.row14x{
+		padding:6px 6px 6px 6px;
+	}
+	.p-307-style{
+		width:100%;
+		line-height:22px;
+	}
+	.row10x{
+	}
+	.btn-ตกลง-style{
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.img-style{
+		width:148px;
+	}
+	.card13x{
+		margin-bottom:8px;
+		border-style:none;
+	}
+	.row-style{
+		width:100%;
+	}
+	.p-bloc-69-style{
+		line-height:18px;
+	}
+	.card-body-style{
+		height:295px;
+	}
+	.rowdd{
+		background-color:var(--swatch-var-Unnamed-Swatch-copy-14);
+	}
+	.h2-dashboard-style{
+		font-size:28px;
+		color:var(--swatch-var-Unnamed-Swatch-Copy-Copy-copy-1)!important;
+	}
+	.btn-69-style{
+		padding-top:4px;
+		padding-bottom:4px;
+	}
+	.card12x3{
+		margin-top:2px;
+	}
+	.container-div-bloc-6-style{
+	}
+	
+	/* Small Text Margin Offsets */
+	.mg-sm-sm{
+		margin-top:10px;
+		margin-bottom:5px;
+	}
+		.mg-md-sm{
+		margin-top:10px;
+		margin-bottom:20px;
+	}
+		.mg-lg-sm{
+		margin-top: 10px;
+		margin-bottom:40px;
+	}
+		.mg-clear-sm{
+		margin:0;
+	}
+	
+}
+
+@media (max-width: 575px){
+	.h1-3-style{
+		font-size:22px;
+		font-family:"DBPenThaiX";
+		line-height:24px;
+	}
+	.h1-27-style{
+		font-size:22px;
+		line-height:24px;
+		font-family:"DBPenThaiX";
+	}
+	.cardx333{
+		padding:22px 22px 22px 22px;
+	}
+	.mt-1{
+	}
+	.ar-card22{
+		padding-left:1px;
+		padding-right:1px;
+	}
+	.img-style{
+		width:164px;
+	}
+	.img-gooddess-2-style{
+		width:164px;
+	}
+	.img-gooddess-3-style{
+		width:164px;
+	}
+	.img-22-style{
+		height:88px;
+	}
+	.navbar-brand img{
+		width:120px;
+	}
+	.footer-link{
+		text-align:center;
+	}
+	.p-bloc-7-style{
+		width:100%;
+		font-size:24px;
+		line-height:24px;
+	}
+	.img-20-style{
+		width:120px;
+	}
+	.img-37988-style{
+		width:120px;
+	}
+	.h2-style{
+		width:100%;
+	}
+	.h2-1-style{
+		font-size:33px;
+	}
+	.p-style{
+		font-size:19px;
+		font-family:"DBHelvethaicaX-Li";
+		line-height:22px;
+	}
+	.p-15-style{
+		font-size:19px;
+		line-height:19px;
+	}
+	.h2-news-style{
+		font-size:22px;
+	}
+	.card33{
+		background-size:cover;
+	}
+	.img-gooddess-333-style{
+		width:69px;
+	}
+	.img-37-style{
+		width:270px;
+	}
+	.h3-bloc-15-style{
+		font-size:24px;
+	}
+	.textxxx{
+		font-family:"DBRamintraX-Bold";
+		font-size:22px;
+		color:#4E6FAF!important;
+	}
+	.h3- วิธีการใช้งาน-style{
+		font-size:15px;
+	}
+	.h3-10-style{
+		font-size:15px;
+	}
+	.h3-11-style{
+		font-size:15px;
+	}
+	.h3-12-style{
+		font-size:15px;
+	}
+	.wdcard2{
+	}
+	.wodx{
+		padding:1px 1px 1px 1px;
+	}
+	.img-38-style{
+		width:218px;
+	}
+	.ccsxx{
+		margin:11px 11px 11px 11px;
+		padding:1px 1px 1px 1px;
+	}
+	.img-43-gooddess-333-style{
+		width:73px;
+	}
+	.p-30-style{
+		line-height:24px;
+		font-size:16px;
+		color:#000000!important;
+	}
+	.dccardx{
+		padding:1px 1px 1px 1px;
+	}
+	.text1{
+		font-size:22px;
+		font-family:"DBRamintraX-Bold";
+	}
+	.text-span-bloc-5-color{
+		font-family:"DBRamintraX-Bold";
+	}
+	.frame99{
+		padding:1px 1px 1px 1px;
+	}
+	.buttonxxx34{
+		font-family:"SukhumvitSet-SemiBold";
+		font-size:13px;
+		color:#E13934!important;
+		background-color:#FEFFFF;
+		border-style:solid;
+		border-color:#E13934!important;
+		border-width:1px 1px 1px 1px;
+	}
+	.btn-เพิ่มเติม-style{
+		width:67.41%;
+	}
+	.h4-หน้าแรก-style{
+		font-family:"SukhumvitSet-Text";
+	}
+	.h4-14-style{
+		font-family:"SukhumvitSet-Text";
+	}
+	.btn-donate-style{
+		width:64.81%;
+		padding-top:8px;
+		padding-bottom:8px;
+		font-size:14px;
+		border-radius:23px 23px 23px 23px;
+	}
+	.row-32-style{
+		width:100%;
+		padding:1px 1px 1px 1px;
+	}
+	.ccx3{
+	}
+	.h2-9-style{
+		font-size:22px;
+	}
+	.img-goodded-style{
+		width:204px;
+	}
+	.btn-padding{
+		font-size:14px;
+		font-family:"SukhumvitSet-SemiBold";
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.btn-style{
+		width:50.74%;
+	}
+	.img-sec3-style{
+		width:207px;
+	}
+	.p-bloc-3-style{
+		width:100%;
+		font-size:22px;
+		line-height:20px;
+		margin:1px 1px 1px 1px;
+	}
+	.btn-button-style{
+		width:100%;
+		padding-top:4px;
+		padding-bottom:4px;
+	}
+	.field-style{
+		width:100%;
+		height:47px;
+		color:#424242!important;
+		margin-bottom:12px;
+		border-color:#D5D5D5!important;
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:21px;
+	}
+	.container-div-style{
+		width:100%;
+	}
+	.btn-6-style{
+		width:39.39%;
+		border-radius:9px 9px 9px 9px;
+	}
+	.img-rati-style{
+		width:69px;
+	}
+	.cardxxxxxx{
+		padding-left:14px;
+	}
+	.card55{
+		width:100%;
+	}
+	.text33{
+		font-size:26px;
+	}
+	.h2-บริจาคความดี-style{
+		font-size:34px;
+		font-family:"DBHelvethaicaX-Med";
+	}
+	.img-43-style{
+		width:47px;
+	}
+	.h4-เกี่ยวกับเรา-style{
+		font-size:20px;
+	}
+	.card28{
+		padding:12px 12px 12px 12px;
+	}
+	.h3-organized-by-style{
+		font-size:28px;
+	}
+	.img-pictu-style{
+		width:249px;
+	}
+	.container-div-0-bloc-6-style{
+		height:27px;
+	}
+	.container-div-39737-style{
+		height:25px;
+	}
+	.container-div-26244-style{
+		height:27px;
+	}
+	.img-bloc-6-style{
+		width:43px;
+	}
+	.button{
+		padding:8px 8px 8px 8px;
+	}
+	.bloc-bloc-23-style{
+		padding:8px 8px 8px 8px;
+	}
+	.h1-สถานะของเรา-style{
+		font-size:20px;
+	}
+	.img-good-logi-style{
+		width:43px;
+	}
+	.h1-style{
+		width:100%;
+		font-size:23px;
+		font-family:"DBHelvethaicaX-Med";
+	}
+	.bloc-bloc-23-style:hover{
+		background-color:rgba(94,222,232,0.49);
+	}
+	.h1-เข้าสู่ระบบ-style{
+		font-size:21px;
+		width:100%;
+		color:#424242!important;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.h1-สมัครสมาชิก-style{
+		width:72.73%;
+	}
+	.img-gooddeed-lo-style{
+		width:126px;
+	}
+	.h3-style{
+		font-size:px;
+		color:#FEFFFF!important;
+	}
+	.btn-log-in-style{
+		width:48.82%;
+	}
+	.cardfit{
+		padding-right:0px;
+		padding-left:0px;
+	}
+	.cardfti2{
+		padding-left:11px;
+		padding-right:7px;
+	}
+	.cardadmin2{
+		padding:29px 22px 29px 22px;
+	}
+	.checkbox-style{
+		width:96%;
+		margin-bottom:33px;
+		font-size:16px;
+	}
+	.cardu{
+		padding:16px 16px 16px 16px;
+	}
+	.factory-button{
+		margin-bottom:22px;
+	}
+	.btn-style:hover{
+		background-color:#FEFFFF;
+	}
+	.cardcon{
+	}
+	.card44{
+	}
+	.cardfit666{
+		background-color:#FEFFFF;
+		padding:0px 0px 0px 0px;
+	}
+	.cardheader{
+		padding-left:33px;
+	}
+	.card2{
+		padding-right:33px;
+		padding-left:33px;
+	}
+	.cardfit44{
+		padding-left:9px;
+		padding-right:9px;
+		width:100%;
+	}
+	.img-trash-now-style{
+		width:214px;
+	}
+	.cardtrash2{
+		margin-top:22px;
+	}
+	.cardnewpro{
+		padding:3px 3px 17px 3px;
+	}
+	.fit2{
+		padding:12px 12px 12px 12px;
+	}
+	.ka2{
+		padding:6px 6px 6px 6px;
+	}
+	.cardblog{
+		margin-bottom:22px;
+		border-style:none;
+		border-color:#D62226!important;
+		padding:0px 3px 4px 3px;
+		border-width:1px 1px 1px 1px;
+	}
+	.cardtrash8{
+		border-color:#C0C0C0!important;
+		border-radius:12px 12px 12px 12px;
+	}
+	.row45{
+		padding:3px 3px 3px 3px;
+	}
+	.h2-20-style{
+		font-size:19px;
+		width:77.88%;
+		text-align:center;
+		font-family:"DBHelvethaicaX-Med";
+		line-height:18px;
+		margin-top:12px;
+	}
+	.p-bloc-1-style{
+		font-size:18px;
+		width:100%;
+		line-height:20px;
+	}
+	.h3-bloc-36-style{
+		font-size:16px;
+		width:100%;
+		line-height:18px;
+	}
+	.p-bloc-4-style{
+		font-weight:400;
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:11px;
+	}
+	.good1{
+		padding:4px 4px 4px 4px;
+	}
+	.h2-sign-up-style{
+		font-size:22px;
+		width:100%;
+		padding-left:4px;
+	}
+	.card-body-12-style{
+		height:32px;
+	}
+	.p-7-bloc-1-style{
+		width:100%;
+		font-size:20px;
+		padding:5px 2px 2px 2px;
+		border-radius:33px 33px 33px 33px;
+	}
+	.p-11-style{
+		font-size:21px;
+		color:#000000!important;
+		width:100%;
+		line-height:21px;
+	}
+	.bloc-0-bloc-1-style{
+		height:41px;
+	}
+	.btn-1-style{
+		font-size:19px;
+		width:100%;
+		height:54px;
+		padding:16px 14px 16px 14px;
+	}
+	.card124{
+		margin-right:0px;
+	}
+	.card-body-bloc-1-style{
+		width:100%;
+		height:117px;
+	}
+	.row-57-style{
+		width:100%;
+	}
+	.card-body-18-style{
+		width:67.92%;
+		background-color:#008E50;
+		background-size:auto auto;
+		height:33px;
+		padding:0px 0px 0px 0px;
+		border-radius:33px 33px 33px 33px;
+	}
+	.p-22-style{
+		width:100%;
+		color:#FEFFFF!important;
+	}
+	.p-7-style{
+		font-size:22px;
+	}
+	.text{
+		font-family:"DBHelvethaicaX-Li";
+		font-size:20px;
+		color:#000000!important;
+	}
+	.p-8-style{
+		font-size:22px;
+		color:#0096FF!important;
+	}
+	.img-31-style{
+		width:100%;
+	}
+	.cardbbb{
+		padding:4px 4px 4px 4px;
+	}
+	.btn-10-00-12-00-น--style{
+		font-size:11px;
+		padding:10px 5px 10px 5px;
+	}
+	.btn-10-00-12-00-น--style:hover{
+		background-color:#ECA36A;
+		color:#FEFFFF!important;
+	}
+	.btn-16-00-18-00-น--style{
+		font-size:11px;
+		padding:10px 8px 10px 8px;
+	}
+	.card22x{
+	}
+	.btn-check-out-style:hover{
+		background-color:transparent;
+	}
+	.h2-trash-now-style{
+		font-size:16px;
+		width:75.92%;
+	}
+	.h2-5-style{
+		color:#EAEAEA!important;
+		font-size:19px;
+		padding-left:0px;
+	}
+	.fit12{
+		border-bottom-left-radius:0px;
+		border-bottom-right-radius:0px;
+		margin-top:0px;
+		padding:20px 22px 20px 22px;
+	}
+	.h2-6-style{
+		font-size:22px;
+		width:100%;
+	}
+	.link3{
+		font-family:"Kanit-Light";
+		color:#FEFFFF!important;
+		font-size:11px;
+	}
+	.h2-7-style{
+		font-size:17px;
+		color:#919191!important;
+	}
+	.cardfith2{
+		padding-left:27px;
+	}
+	.h2-8-style{
+		font-size:20px;
+		color:#5E5E5E!important;
+	}
+	.h2-menu-style{
+		font-size:18px;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.cardfitt{
+		padding-top:0px;
+		padding-bottom:0px;
+	}
+	.h2-เมนู-style{
+		font-family:"Kanit-Light";
+		width:100%;
+	}
+	.fixx3{
+		margin-top:2px;
+		padding-top:7px;
+		padding-bottom:7px;
+	}
+	.cardfit333{
+		padding:6px 22px 6px 22px;
+		border-radius:18px 18px 18px 18px;
+	}
+	.rownn{
+		margin-top:8px;
+		margin-bottom:8px;
+	}
+	.fix44{
+	}
+	.p-35-style{
+		font-size:21px;
+	}
+	.p-36-style{
+		font-size:18px;
+		font-family:"DBHelvethaicaX-Reg";
+	}
+	.cardfit3{
+		padding:0px 0px 0px 0px;
+	}
+	label{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:19px;
+	}
+	.p-16342-style{
+		font-size:15px;
+	}
+	.h3-ชัยพัฒนา-style{
+		font-size:19px;
+	}
+	.card-body-style{
+		height:297px;
+	}
+	.form{
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:14px;
+	}
+	.h2-show-all-style{
+		font-size:12px;
+	}
+	.readmore{
+		font-size:14px;
+	}
+	.container-div-bloc-39-style{
+		width:100%;
+	}
+	.img-90-style{
+		width:66px;
+	}
+	.p-8-bloc-1-style{
+		font-size:19px;
+		color:#797979!important;
+	}
+	.row12px{
+	}
+	.row13x{
+		padding-top:22px;
+	}
+	.p-307-style{
+		font-size:21px;
+		line-height:21px;
+	}
+	.p-bloc-39-style{
+		font-size:21px;
+	}
+	.h3-bloc-46-style{
+		font-size:22px;
+	}
+	.p-1-style{
+		border-style:solid;
+		border-width:0px 0px 1px 0px;
+	}
+	.text-span-bloc-36-color{
+		color:#FF2600!important;
+	}
+	.field-bloc-6-style{
+		font-size:20px;
+	}
+	.newrow{
+	}
+	.p-105-style{
+	}
+	.row1{
+	}
+	.row2{
+	}
+	.rowx{
+		background-color:#D62226;
+		padding-bottom:22px;
+		background:linear-gradient(91deg, #D62226     0%, #FF9F00 100%);
+	}
+	.card-body-bloc-39-style{
+		width:100%;
+	}
+	.textbig{
+	}
+	.h2-19-style{
+		line-height:25px;
+		font-size:21px;
+		width:100%;
+	}
+	.h2-30-style{
+		font-size:19px;
+	}
+	.btn-แก้ไข-style{
+		width:63.46%;
+	}
+	.img-2417835-style{
+		width:26px;
+	}
+	.p-bloc-49-style{
+	}
+	.textsmall{
+	}
+	.h2-edit-style{
+		font-family:"DBHelvethaicaX-Med";
+		font-size:17px;
+	}
+	.container-div-bloc-53-style{
+		height:37px;
+	}
+	.cardtop{
+		padding-left:1px;
+		padding-right:1px;
+	}
+	.blocsapp-special-menu blocsnav{
+		background-color:#F3E88C;
+		color:#FEFC78!important;
+	}
+	.cardhome{
+		padding:1px 1px 1px 1px;
+	}
+	.cardfit7{
+		margin-bottom:33px;
+		margin-top:33px;
+	}
+	.btn-11-style{
+		padding-top:4px;
+		padding-bottom:4px;
+	}
+	.p-bloc-53-style{
+		line-height:22px;
+		font-family:"DBHelvethaicaX-Reg";
+		color:#000000!important;
+	}
+	.radio-style{
+		width:44.14%;
+		color:#000000!important;
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:21px;
+	}
+	.btn-2-style{
+		font-size:14px;
+		border-radius:11px 11px 11px 11px;
+	}
+	.h3-bloc-3-style{
+		width:100%;
+	}
+	.cardfit12{
+	}
+	.img-bloc-43-style{
+		width:308px;
+	}
+	.row14x{
+		padding:6px 6px 6px 6px;
+	}
+	.btn-ตกลง-style{
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.cardfit1{
+	}
+	.field-bloc-1-style{
+		width:100%;
+	}
+	.row10x{
+	}
+	.btn-ยืนยัน-style{
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.p-65-style{
+		color:#FF9300!important;
+	}
+	.btn-18-style{
+		width:100%;
+		font-family:"DBHelvethaicaX-Reg";
+		font-size:17px;
+		color:#FEFFFF!important;
+		background-color:#D71E27;
+		padding:4px 4px 4px 4px;
+		border-radius:15px 15px 15px 15px;
+	}
+	.h3-bloc-18-style{
+		font-size:15px;
+	}
+	.p-18-style{
+		font-size:14px;
+	}
+	.img-placeholder-us-style{
+		width:46px;
+	}
+	.p-458-style{
+		width:100%;
+	}
+	.btn-14-style{
+		padding-top:2px;
+		padding-bottom:2px;
+	}
+	.cardfit3x{
+	}
+	.img-new-pro-style{
+		width:49px;
+	}
+	.img-statu-style{
+		width:87px;
+	}
+	
+	/* Mobile Text Margin Offsets */
+	.mg-sm-xs{
+		margin-top:10px;
+		margin-bottom:5px;
+	}
+		.mg-md-xs{
+		margin-top:10px;
+		margin-bottom:20px;
+	}
+		.mg-clear-xs{
+		margin:0;
+	}
+	
+}
+
