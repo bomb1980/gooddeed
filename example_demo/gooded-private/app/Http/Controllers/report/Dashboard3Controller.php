@@ -22,9 +22,9 @@ class Dashboard3Controller extends Controller
 
     public function index()
     {
-        TestModel::create([
-            'name' => "tet",
-        ]);
+        // TestModel::create([
+        //     'name' => "tet",
+        // ]);
         return view('front.index');
     }
 
