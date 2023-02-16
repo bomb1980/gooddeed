@@ -35,7 +35,7 @@ class AddComponent extends Component
                 'std_school_type_id' => 'required',
                 'std_grade' => 'required',
                 'std_code' => 'required',
-                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email:rfc,dns',
                 'password1' => 'required',
                 'password2' => 'required',
                 'checkpassword' => 'required',

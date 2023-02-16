@@ -71,7 +71,7 @@
                                 'data-error-validation-msg' => 'Not a valid email address',
                                 'autocomplete' => 'off',
                                 // 'maxlength' => 100,
-                                // 'required',
+                                'required',
                                 'placeholder' => 'อีเมล์',
                             ]) }}
                             @error('email')

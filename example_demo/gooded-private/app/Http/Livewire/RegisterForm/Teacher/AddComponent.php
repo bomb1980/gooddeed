@@ -48,7 +48,7 @@ class AddComponent extends Component
         $this->validate(
             [
                 'std_school_id' => 'required',
-                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email:rfc,dns',
                 'password1' => 'required',
                 'password2' => 'required',
                 'checkpassword' => 'required',
