@@ -35,8 +35,7 @@ class AddComponent extends Component
                 'std_school_type_id' => 'required',
                 'std_grade' => 'required',
                 'std_code' => 'required',
-                'email' =>
-                    'required|unique:ooap_tbl_employees,emp_citizen_id|email',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email',
                 'password1' => 'required',
                 'password2' => 'required',
                 'checkpassword' => 'required',
@@ -47,8 +46,8 @@ class AddComponent extends Component
                 'std_school_type_id.required' => 'กรุณาเลือก ระดับชั้นเรียน',
                 'std_grade.required' => 'กรุณาเลือก ปี',
                 'std_code.required' => 'กรุณากรอก รหัสประจำตัวนักเรียน',
-                'email.unique' => 'กรุณากรอก อีเมล์',
-                'email.required' => 'มีอีเมล์นี้ในระบบแล้ว',
+                'email.unique' => 'มีอีเมล์นี้ในระบบแล้ว',
+                'email.required' => 'กรุณากรอก อีเมล์',
                 'email.email' => 'กรุณาระบุในรูปแบบอีเมล์',
                 'password1.required' => 'กรุณากรอก รหัสผ่าน',
                 'password2.required' => 'กรุณากรอก ยืนยันรหัสผ่าน',
@@ -57,10 +56,8 @@ class AddComponent extends Component
         );
         // dd($this);
         $OoapTblEmployee = OoapTblEmployee::create([
-            'emp_citizen_id' => $this->email, //req random
-            // 'email' => $this->email,
-            'emp_type' => 1, //1: student , 2: parent, 3 teacher
-
+            'emp_citizen_id' => $this->email,
+            'emp_type' => 1,
             'std_school_id' => $this->std_school_id,
             'std_school_type_id' => $this->std_school_type_id,
             'std_grade' => $this->std_grade,
