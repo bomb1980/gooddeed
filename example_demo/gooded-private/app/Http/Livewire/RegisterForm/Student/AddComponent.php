@@ -13,7 +13,7 @@ class AddComponent extends Component
     public $std_school_type_id;
     public $std_grade;
     public $std_code;
-    public $std_email;
+    public $email;
     public $password1;
     public $password2;
     public $checkpassword;
@@ -35,8 +35,8 @@ class AddComponent extends Component
                 'std_school_type_id' => 'required',
                 'std_grade' => 'required',
                 'std_code' => 'required',
-                'std_email' =>
-                    'required|unique:ooap_tbl_employees,std_email|email',
+                'email' =>
+                    'required|unique:ooap_tbl_employees,emp_citizen_id|email',
                 'password1' => 'required',
                 'password2' => 'required',
                 'checkpassword' => 'required',
@@ -47,9 +47,9 @@ class AddComponent extends Component
                 'std_school_type_id.required' => 'กรุณาเลือก ระดับชั้นเรียน',
                 'std_grade.required' => 'กรุณาเลือก ปี',
                 'std_code.required' => 'กรุณากรอก รหัสประจำตัวนักเรียน',
-                'std_email.unique' => 'กรุณากรอก อีเมล์',
-                'std_email.required' => 'มีอีเมล์นี้ในระบบแล้ว',
-                'std_email.email' => 'กรุณาระบุในรูปแบบอีเมล์',
+                'email.unique' => 'กรุณากรอก อีเมล์',
+                'email.required' => 'มีอีเมล์นี้ในระบบแล้ว',
+                'email.email' => 'กรุณาระบุในรูปแบบอีเมล์',
                 'password1.required' => 'กรุณากรอก รหัสผ่าน',
                 'password2.required' => 'กรุณากรอก ยืนยันรหัสผ่าน',
                 'checkpassword.required' => 'หรัสผ่านไม่ตรงกัน',
@@ -57,15 +57,14 @@ class AddComponent extends Component
         );
         // dd($this);
         $OoapTblEmployee = OoapTblEmployee::create([
-            'emp_citizen_id' => $this->std_email, //req random
-            'email' => $this->std_email,
+            'emp_citizen_id' => $this->email, //req random
+            // 'email' => $this->email,
             'emp_type' => 1, //1: student , 2: parent, 3 teacher
 
             'std_school_id' => $this->std_school_id,
             'std_school_type_id' => $this->std_school_type_id,
             'std_grade' => $this->std_grade,
             'std_code' => $this->std_code,
-            'std_email' => $this->std_email,
             'password' => Hash::make($this->password2),
             // 'remember_token' => csrf_token(),
             // 'created_by' => auth()->user()->emp_citizen_id,

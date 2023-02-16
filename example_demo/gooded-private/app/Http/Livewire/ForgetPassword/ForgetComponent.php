@@ -26,7 +26,7 @@ class ForgetComponent extends Component
         // ..code
         $this->validate(
             [
-                'email' => 'required|exists:ooap_tbl_employees,email|email',
+                'email' => 'required|exists:ooap_tbl_employees,emp_citizen_id|email',
             ],
             [
                 'email.required' => 'กรุณาระบุอีเมล์',
@@ -99,7 +99,7 @@ class ForgetComponent extends Component
         );
 
         $OoapTblEmployee = OoapTblEmployee::where(
-            'email',
+            'emp_citizen_id',
             '=',
             $this->email
         )->update([
@@ -107,7 +107,7 @@ class ForgetComponent extends Component
             'updated_at' => now(),
         ]);
 
-        $get = OoapTblEmployee::where('email', '=', $this->email)->first()
+        $get = OoapTblEmployee::where('emp_citizen_id', '=', $this->email)->first()
             ->emp_type;
 
         $redirect_to = [

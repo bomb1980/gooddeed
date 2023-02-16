@@ -21,6 +21,19 @@ class OoapTblEmployee extends Authenticatable
 
     protected $fillable = [
         'emp_citizen_id',
+
+        //add new
+        'std_school_id',
+        'std_school_type_id',
+        'std_grade',
+        'std_code',
+        'std_email',
+        'sex',
+        'relationship',
+        'teacher_position',
+        'password',
+        //end add new
+
         'new_noti',
         'division_id',
         'division_name',
@@ -50,7 +63,7 @@ class OoapTblEmployee extends Authenticatable
         'birthday',
         'address',
         'phone',
-        'email',
+        // 'email',
         'remark',
         'myooapsys',
         'status',
@@ -64,16 +77,6 @@ class OoapTblEmployee extends Authenticatable
         'deleted_at',
         'custom_permission',
         'emp_type',
-
-        'std_school_id',
-        'std_school_type_id',
-        'std_grade',
-        'std_code',
-        'std_email',
-        'sex',
-        'relationship',
-        'teacher_position',
-        'password',
     ];
 
     public static function updateEmployees($user)

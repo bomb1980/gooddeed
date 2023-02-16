@@ -64,9 +64,9 @@
                     </div>
                     <div class="col-10 offset-1 col-lg-6 col-md-6 offset-md-3 col-sm-6 offset-sm-3 offset-lg-3">
                         <div class="form-group">
-                            {{ Form::email('std_email', $std_email, [
-                                'wire:model' => 'std_email',
-                                'id' => 'std_email',
+                            {{ Form::email('email', $email, [
+                                'wire:model' => 'email',
+                                'id' => 'email',
                                 'class' => 'form-control field-style',
                                 'data-error-validation-msg' => 'Not a valid email address',
                                 'autocomplete' => 'off',
@@ -74,7 +74,7 @@
                                 // 'required',
                                 'placeholder' => 'อีเมล์',
                             ]) }}
-                            @error('std_email')
+                            @error('email')
                                 <small class="text-danger">*{{ $message }}</small>
                             @enderror
                             {{-- <input class="form-control field-style" placeholder="อีเมล์" required="" type="email"

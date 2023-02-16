@@ -38,7 +38,7 @@ class AddComponent extends Component
             [
                 'std_school_id' => 'required',
                 'std_code' => 'required|exists:ooap_tbl_employees,std_code|',
-                'email' => 'required|unique:ooap_tbl_employees,email|email',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email',
                 'password1' => 'required',
                 'password2' => 'required',
                 'check_readed' => 'required',
@@ -74,12 +74,11 @@ class AddComponent extends Component
         );
         $OoapTblEmployee = OoapTblEmployee::create([
             'emp_citizen_id' => $this->email, //req random
-            'email' => $this->email,
+            // 'email' => $this->email,
             'emp_type' => 2, //1: student , 2: parent, 3 teacher
 
             'std_school_id' => $this->std_school_id,
             'std_code' => $this->std_code,
-            'email' => $this->email,
             'password' => Hash::make($this->password2),
 
             'title_th' => $this->title_th,

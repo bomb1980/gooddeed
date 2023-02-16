@@ -48,7 +48,7 @@ class AddComponent extends Component
         $this->validate(
             [
                 'std_school_id' => 'required',
-                'email' => 'required|unique:ooap_tbl_employees,email|email',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email',
                 'password1' => 'required',
                 'password2' => 'required',
                 'checkpassword' => 'required',
@@ -83,7 +83,7 @@ class AddComponent extends Component
         // dd($this);
         $OoapTblEmployee = OoapTblEmployee::create([
             'emp_citizen_id' => $this->email, //req random
-            'email' => $this->email,
+            // 'email' => $this->email,
             'password' => Hash::make($this->password2),
 
             'title_th' => $this->title_th,
