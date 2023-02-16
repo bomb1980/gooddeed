@@ -22,7 +22,7 @@ class OtpResetPasswordMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Change password verify.')
+        return $this->subject('Reset password.')
                     ->view('mail.OtpResetPasswordMail', ['otp' => $this->otp]);
     }
 }
