@@ -2,25 +2,27 @@
 
 namespace App\Http\Livewire\ForgetPassword;
 
+use App\Mail\OtpResetPasswordMail;
 use App\Models\OoapTblEmployee;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class ForgetComponent extends Component
 {
     public $process = 1; //0 = mail, 2 = otp, 3 = new password
-    public $email = "q@2.d";
-    public $otp = '123456';
+    public $email;
+    public $otp;
     public $otp_mail;
     public $otp_check;
     public $password1;
     public $password2;
     public $check_password;
+    public $expire_time;
+    public $otp_status;
 
     public function sendMail()
     {
-        // dd($this);
-
         // ..code
         $this->validate(
             [
@@ -33,33 +35,46 @@ class ForgetComponent extends Component
             ]
         );
 
-        $this->otp_mail = "123456";
+        $setotp = rand(000000, 999999);
+        Mail::to($this->email)->send(new OtpResetPasswordMail($setotp));
+
+        $this->otp_mail = $setotp;
+
+        $this->expire_time = now();
 
         $this->process = 2;
+
+        $this->emit('startTimer');
     }
 
     public function compareOTP()
     {
         // ..code
-        if($this->otp == $this->otp_mail){
-            $this->otp_check = true;
-        }else{
-            $this->otp_check = null;
+        $time_left = time() - strtotime($this->expire_time);
+        // dd($time_left);
+        if ($time_left < 300) {
+            $this->otp_status = 'pass';
+            $this->otp_check = $this->otp == $this->otp_mail ? 'pass' : null;
+        } else {
+            //เกิน 5 นาทีใช้ไม่ได้
+            $this->otp_status = null;
+            $this->otp_check = 'notpass';
         }
 
         $this->validate(
             [
                 'otp' => 'required',
                 'otp_check' => 'required',
+                'otp_status' => 'required',
             ],
             [
                 'otp.required' => 'กรุณาระบุ OTP',
                 'otp_check.required' => 'OTP ไม่ถูกต้อง',
+                'otp_status.required' => 'OTP หมดเวลา',
             ]
         );
 
         $this->process = 3;
-
     }
 
     public function resetPassword()
@@ -67,9 +82,8 @@ class ForgetComponent extends Component
         // dd($this);
 
         // ..code
-        $this->password1 == $this->password2
-            ? ($this->check_password = 'pass')
-            : ($this->check_password = '');
+        $this->check_password =
+            $this->password1 == $this->password2 ? 'pass' : null;
 
         $this->validate(
             [
@@ -84,14 +98,24 @@ class ForgetComponent extends Component
             ]
         );
 
-        $OoapTblEmployee = OoapTblEmployee::where('email', '=', $this->email)->update([
+        $OoapTblEmployee = OoapTblEmployee::where(
+            'email',
+            '=',
+            $this->email
+        )->update([
             'password' => Hash::make($this->password2),
             'updated_at' => now(),
         ]);
 
-        $get = OoapTblEmployee::where('email', '=', $this->email)->first()->emp_type;
+        $get = OoapTblEmployee::where('email', '=', $this->email)->first()
+            ->emp_type;
 
-        $redirect_to = [1 => 'student', 2 => 'parent', 3 => 'teacher', 4 => 'admin'];
+        $redirect_to = [
+            1 => 'student',
+            2 => 'parent',
+            3 => 'teacher',
+            4 => 'admin',
+        ];
 
         return redirect("/loginForm/$redirect_to[$get]")->with(
             'success',
