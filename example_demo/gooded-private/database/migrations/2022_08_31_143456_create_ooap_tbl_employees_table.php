@@ -11,7 +11,9 @@ class CreateOoapTblEmployeesTable extends Migration
     {
         Schema::create('ooap_tbl_employees', function (Blueprint $table) {
             $table->integer('emp_id')->autoIncrement()->comment('รหัสพนักงาน');
-            $table->string('emp_citizen_id')->unique()->comment('เลขบัตรปชช.');
+            $table->string('emp_citizen_id')->unique()->comment('email.');
+            $table->text('password')->nullable()->comment('รหัสผ่าน');
+
 
             //new add
             $table->string('std_school_id')->nullable()->comment('โรงเรียน');
@@ -25,7 +27,6 @@ class CreateOoapTblEmployeesTable extends Migration
 
             $table->string('teacher_position')->nullable()->comment('ตําแหน่งครู');
 
-            $table->text('password')->nullable()->comment('รหัสผ่าน');
             //end new add
 
             $table->integer('division_id')->index()->nullable();

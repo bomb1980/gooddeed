@@ -47,13 +47,35 @@
 				<h1 class="text-lg-center text-md-center h1-เข้าสู่ระบบ-style text-sm-center text-center mg-sm mg-md-sm">
 					ครู / อาจารย์
 				</h1>
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
 				<div class="row align-items-start">
 					<div class="wodx align-self-center col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-8 offset-2 col-sm-8 offset-sm-2">
 						<div class="form-group text-center text-sm-center">
-							<input class="form-control field-style" placeholder="อีเมล์" required="">
-							<input class="form-control field-style" type="password" placeholder="รหัสผ่าน" id="input_2723" required="">
-							<div class="text-center">
-								<a href="html/teacher/dashboard-teacher.php" class="btn btn-d btn-lg d-sm-inline-block d-none btn-ตกลง-style">ตกลง<br></a>
+
+
+                            <input value="{{$mail}}" name="name" class="form-control field-style" type="email"
+                                            data-error-validation-msg="Not a valid email address"
+                                            placeholder="ชื่อผู้ใช้" required="">
+
+
+                                            <input value="{{$password}}" name="password" class="form-control field-style" type="password" placeholder="รหัสผ่าน"
+                                            id="input_2723" required="">
+
+
+							{{--  <input class="form-control field-style" placeholder="อีเมล์" required="">
+							<input class="form-control field-style" type="password" placeholder="รหัสผ่าน" id="input_2723" required="">  --}}
+
+
+                            <div class="text-center">
+
+                                <button type="submit" class="btn btn-d btn-lg d-sm-inline-block d-none btn-ตกลง-style">ตกลง</button>
+<br>
+
+
+
+								{{--  <a href="html/teacher/dashboard-teacher.php" class="btn btn-d btn-lg d-sm-inline-block d-none btn-ตกลง-style">ตกลง<br></a>  --}}
 							</div>
 						</div>
 					</div>
@@ -74,6 +96,10 @@
 						</div>
 					</div>
 				</div>
+
+            </form>
+
+
 			</div>
 		</div>
 	</div>
