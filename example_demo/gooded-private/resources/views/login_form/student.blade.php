@@ -51,8 +51,7 @@
                     <div
                         class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-12 offset-0 cardadmin2">
                         <img src="html/img/lazyload-ph.png" data-src="html/img/good_login4-1.svg"
-                            class="img-fluid mx-auto d-block img-43-style lazyload" alt="mail" width="45"
-                            height="42">
+                            class="img-fluid mx-auto d-block img-43-style lazyload" alt="mail" width="45" height="42">
                         <h1
                             class="text-lg-center text-md-center h1-เข้าสู่ระบบ-style text-sm-center text-center mg-sm mg-md-sm">
                             นักเรียน
@@ -66,15 +65,21 @@
                                 <div
                                     class="wodx align-self-center col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-8 offset-2 col-sm-8 offset-sm-2">
                                     <div class="form-group text-center text-sm-center">
-                                        <input value="DSDD@GOGO.COM" name="name" class="form-control field-style" type="email"
-                                            data-error-validation-msg="Not a valid email address"
+
+
+                                        <input value="{{$mail}}" name="name" class="form-control field-style"
+                                            type="email" data-error-validation-msg="Not a valid email address"
                                             placeholder="ชื่อผู้ใช้" required="">
-                                        <input name="password" class="form-control field-style" type="password" placeholder="รหัสผ่าน"
-                                            id="input_2723" required="">
+
+
+                                        <input value="{{$password}}" name="password" class="form-control field-style"
+                                            type="password" placeholder="รหัสผ่าน" id="input_2723" required="">
+
+
                                         <div class="text-center">
 
                                             <button type="submit" class="btn btn-d btn-lg btn-11-style">ตกลง</button>
-<br>
+                                            <br>
 
                                             {{-- <a href="html/student/dashboard-student.php"
                                                 class="btn btn-d btn-lg btn-11-style">ตกลง<br></a> --}}
@@ -100,7 +105,7 @@
 
 
 
-                                                        <br>
+                                                    <br>
                                                 </h1>
                                             </div>
                                         </div>

@@ -62,7 +62,7 @@ class AddComponent extends Component
                 'email.email' => 'กรุณาระบุในรูปแบบอีเมล์',
                 'password1.required' => 'กรุณากรอก รหัสผ่าน',
                 'password2.required' => 'กรุณากรอก ยืนยันรหัสผ่าน',
-                'checkpassword.required' => 'หรัสผ่านไม่ตรงกัน',
+                'checkpassword.required' => 'รหัสผ่านไม่ตรงกัน',
                 'title_th.required' => 'กรุณาระบุ คำนำหน้าชื่อ',
                 'fname_th.required' => 'กรุณากรอก ชื่อ',
                 'lname_th.required' => 'กรุณากรอก นามสกุล',

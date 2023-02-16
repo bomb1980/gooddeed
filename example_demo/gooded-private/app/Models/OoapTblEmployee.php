@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Support\Facades\Http;
-
+//ooap_tbl_employees_model
 class OoapTblEmployee extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

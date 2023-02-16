@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\OoapTblEmployee;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class EmployeeSeeder extends Seeder
 
         OoapTblEmployee::insert([
             [
+                'password' => Hash::make('1234'),
                 'emp_citizen_id' => 'DSDD@GOGO.COM',
                 'new_noti' => null,
                 'division_id' => '84',
