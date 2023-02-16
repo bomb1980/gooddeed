@@ -8,6 +8,9 @@
                 @error('email')
                     <small class="text-danger">*{{ $message }}</small>
                 @enderror
+                @error('sendemail_check')
+                    <small class="text-danger">*{{ $message }}</small>
+                @enderror
                 <div class="text-center">
                     <button type="button" class="btn btn-d btn-lg btn-11-style" wire:click='sendMail'>ส่ง</button>
                 </div>

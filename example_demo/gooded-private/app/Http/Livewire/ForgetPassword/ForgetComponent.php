@@ -12,6 +12,7 @@ class ForgetComponent extends Component
 {
     public $process = 1; //0 = mail, 2 = otp, 3 = new password
     public $email;
+    public $sendemail_check;
     public $otp;
     public $otp_mail;
     public $otp_check;
@@ -21,12 +22,22 @@ class ForgetComponent extends Component
     public $expire_time;
     public $otp_status;
 
+    public function sendTo($otp){
+        try {
+            Mail::to($this->email)->send(new \App\Mail\OtpResetPasswordMail($otp));
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     public function sendMail()
     {
         // ..code
         $this->validate(
             [
-                'email' => 'required|exists:ooap_tbl_employees,emp_citizen_id|email',
+                'email' =>
+                    'required|exists:ooap_tbl_employees,emp_citizen_id|email',
             ],
             [
                 'email.required' => 'กรุณาระบุอีเมล์',
@@ -36,15 +47,27 @@ class ForgetComponent extends Component
         );
 
         $setotp = rand(000000, 999999);
-        Mail::to($this->email)->send(new OtpResetPasswordMail($setotp));
+        if($this->sendTo($setotp)){
+            $this->sendemail_check = true;
 
-        $this->otp_mail = $setotp;
+            $this->otp_mail = $setotp;
 
-        $this->expire_time = now();
+            $this->expire_time = now();
 
-        $this->process = 2;
+            $this->process = 2;
 
-        $this->emit('startTimer');
+            $this->emit('startTimer');
+        }else{
+            $this->sendemail_check = '';
+            $this->validate(
+                [
+                    'sendemail_check' => 'required',
+                ],
+                [
+                    'sendemail_check.required' => 'ส่งเมลไม่สำเร็จ',
+                ]
+            );
+        }
     }
 
     public function compareOTP()
@@ -107,8 +130,11 @@ class ForgetComponent extends Component
             'updated_at' => now(),
         ]);
 
-        $get = OoapTblEmployee::where('emp_citizen_id', '=', $this->email)->first()
-            ->emp_type;
+        $get = OoapTblEmployee::where(
+            'emp_citizen_id',
+            '=',
+            $this->email
+        )->first()->emp_type;
 
         $redirect_to = [
             1 => 'student',
