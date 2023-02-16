@@ -38,7 +38,7 @@ class AddComponent extends Component
             [
                 'std_school_id' => 'required',
                 'std_code' => 'required|exists:ooap_tbl_employees,std_code|',
-                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email:rfc,dns',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|regex:/(.+)@(.+)\.(.+)/i',
                 'password1' => 'required',
                 'password2' => 'required',
                 'check_readed' => 'required',
@@ -59,7 +59,7 @@ class AddComponent extends Component
                 'std_code.exists' => 'ไม่มี รหัส ID นักเรียนของท่านในระบบ',
                 'email.required' => 'กรุณากรอก อีเมล์',
                 'email.unique' => 'มีอีเมล์นี้ในระบบแล้ว',
-                'email.email' => 'กรุณาระบุในรูปแบบอีเมล์',
+                'email.regex' => 'กรุณาระบุในรูปแบบอีเมล์',
                 'password1.required' => 'กรุณากรอก รหัสผ่าน',
                 'password2.required' => 'กรุณากรอก ยืนยันรหัสผ่าน',
                 'checkpassword.required' => 'รหัสผ่านไม่ตรงกัน',

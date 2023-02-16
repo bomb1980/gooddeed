@@ -48,7 +48,7 @@ class AddComponent extends Component
         $this->validate(
             [
                 'std_school_id' => 'required',
-                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|email:rfc,dns',
+                'email' => 'required|unique:ooap_tbl_employees,emp_citizen_id|regex:/(.+)@(.+)\.(.+)/i',
                 'password1' => 'required',
                 'password2' => 'required',
                 'checkpassword' => 'required',
@@ -66,7 +66,7 @@ class AddComponent extends Component
                 'std_school_id.required' => 'กรุณาเลือก โรงเรียน',
                 'email.required' => 'กรุณากรอก อีเมล์',
                 'email.unique' => 'มีอีเมล์นี้ในระบบแล้ว',
-                'email.email' => 'กรุณาระบุในรูปแบบอีเมล์',
+                'email.regex' => 'กรุณาระบุในรูปแบบอีเมล์',
                 'password1.required' => 'กรุณากรอก รหัสผ่าน',
                 'password2.required' => 'กรุณากรอก ยืนยันรหัสผ่าน',
                 'checkpassword.required' => 'รหัสผ่านไม่ตรงกัน',
